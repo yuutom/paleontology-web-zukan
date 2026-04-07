@@ -293,22 +293,22 @@ function App() {
                 Curated Fossil Atlas
               </p>
 
-              <h1 className="mt-3 font-['Iowan_Old_Style','Palatino_Linotype','Book_Antiqua',serif] text-[clamp(3.6rem,6.8vw,7rem)] leading-[1.02] font-semibold max-sm:text-[clamp(2.8rem,12vw,5rem)]">
+              <h1 className="mt-3 font-['Iowan_Old_Style','Palatino_Linotype','Book_Antiqua',serif] text-[clamp(3.6rem,6.8vw,7rem)] leading-[1.02] font-semibold max-sm:text-[clamp(2.2rem,10vw,3.6rem)]">
                 古生物Web図鑑
               </h1>
 
-              <p className="mt-3 max-w-[60ch] leading-8 text-[#d1ddd5]">
+              <p className="mt-3 max-w-[60ch] leading-8 text-[#d1ddd5] max-sm:text-[0.92rem] max-sm:leading-6">
                 海から陸、三葉虫から巨大恐竜まで。古生物の姿、時代、分類、生息年代を直感的にたどれるインタラクティブなWeb図鑑です。
               </p>
 
-              <div className="mt-7 flex flex-wrap gap-3.5">
+              <div className="mt-7 flex flex-wrap gap-3.5 max-sm:gap-2.5">
                 {heroMetrics.map((metric) => (
                   <div
                     key={metric.label}
-                    className="min-w-[140px] rounded-2xl border border-white/6 bg-white/[0.03] px-[18px] py-4"
+                    className="min-w-[140px] rounded-2xl border border-white/6 bg-white/[0.03] px-[18px] py-4 max-sm:min-w-[102px] max-sm:px-3 max-sm:py-3"
                   >
-                    <span className="text-xs text-[#a7bbb2]">{metric.label}</span>
-                    <strong className="block font-['Iowan_Old_Style','Palatino_Linotype','Book_Antiqua',serif] text-[1.7rem] text-[#f3d7a1]">
+                    <span className="text-xs text-[#a7bbb2] max-sm:text-[0.68rem]">{metric.label}</span>
+                    <strong className="block font-['Iowan_Old_Style','Palatino_Linotype','Book_Antiqua',serif] text-[1.7rem] text-[#f3d7a1] max-sm:text-[1.35rem]">
                       {metric.value}
                     </strong>
                   </div>
@@ -346,7 +346,7 @@ function App() {
             <div className="flex items-end justify-between gap-6 max-sm:flex-col max-sm:items-start">
               <div>
                 <p className="text-xs uppercase tracking-[0.22em] text-[#a7bbb2]">Deep Time</p>
-                <h2 className="mt-2 font-['Iowan_Old_Style','Palatino_Linotype','Book_Antiqua',serif] text-4xl font-semibold leading-none">
+                <h2 className="mt-2 font-['Iowan_Old_Style','Palatino_Linotype','Book_Antiqua',serif] text-4xl font-semibold leading-none max-sm:text-[1.7rem]">
                   地質時代のタイムライン
                 </h2>
               </div>
@@ -402,7 +402,7 @@ function App() {
             <div className="flex items-end justify-between gap-6 max-sm:flex-col max-sm:items-start">
               <div>
                 <p className="text-xs uppercase tracking-[0.22em] text-[#a7bbb2]">Explorer</p>
-                <h2 className="mt-2 font-['Iowan_Old_Style','Palatino_Linotype','Book_Antiqua',serif] text-4xl font-semibold leading-none">
+                <h2 className="mt-2 font-['Iowan_Old_Style','Palatino_Linotype','Book_Antiqua',serif] text-4xl font-semibold leading-none max-sm:text-[1.7rem]">
                   古生物を探す
                 </h2>
               </div>
