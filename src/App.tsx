@@ -49,6 +49,21 @@ function formatCompactRange(from: number, to: number) {
   return `${from} - ${to}`;
 }
 
+function formatTimelineEntryLabel(fossil: Fossil) {
+  if (fossil.timeline_entries.length === 0) {
+    return "時代未設定";
+  }
+
+  if (fossil.timeline_entries.length === 1) {
+    return fossil.timeline_entries[0].name;
+  }
+
+  const first = fossil.timeline_entries[0];
+  const last = fossil.timeline_entries[fossil.timeline_entries.length - 1];
+
+  return `${first.name} ~ ${last.name}`;
+}
+
 function FossilArt({ fossil }: { fossil: Fossil }) {
   if (fossil.image) {
     return (
@@ -289,7 +304,7 @@ function App() {
 
                       <div className="mt-4 flex flex-wrap gap-2.5">
                         <span className="rounded-full border border-white/6 bg-white/5 px-3 py-2 text-xs text-[#dce6e0]">
-                          {fossil.timeline_entries.map((entry) => entry.name).join(" / ")}
+                          {formatTimelineEntryLabel(fossil)}
                         </span>
                         <span className="rounded-full border border-white/6 bg-white/5 px-3 py-2 text-xs text-[#dce6e0]">
                           {fossil.category}
@@ -323,7 +338,7 @@ function App() {
 
                   <div className="mt-5 flex flex-wrap gap-2.5">
                     <span className="rounded-full border border-white/6 bg-white/5 px-3 py-2 text-xs text-[#dce6e0]">
-                      {selectedFossil.timeline_entries.map((entry) => entry.name).join(" / ")}
+                      {formatTimelineEntryLabel(selectedFossil)}
                     </span>
                     <span className="rounded-full border border-white/6 bg-white/5 px-3 py-2 text-xs text-[#dce6e0]">
                       {selectedFossil.category}
@@ -340,7 +355,7 @@ function App() {
                       ["名称", selectedFossil.name],
                       [
                         "地質時代",
-                        selectedFossil.timeline_entries.map((entry) => entry.name).join(" / "),
+                        formatTimelineEntryLabel(selectedFossil),
                       ],
                       ["期間", formatCompactRange(selectedFossil.from, selectedFossil.to)],
                       ["分類", selectedFossil.category],
