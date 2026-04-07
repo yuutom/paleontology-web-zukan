@@ -64,20 +64,29 @@ function formatTimelineEntryLabel(fossil: Fossil) {
   return `${first.name} ~ ${last.name}`;
 }
 
-function FossilArt({ fossil }: { fossil: Fossil }) {
+function FossilCardArt({ fossil }: { fossil: Fossil }) {
+  return (
+    <div
+      className="fossil-svg text-white [&_svg]:h-auto [&_svg]:w-full [&_svg]:max-w-[230px]"
+      dangerouslySetInnerHTML={{ __html: fossil.art }}
+    />
+  );
+}
+
+function FossilDetailImage({ fossil }: { fossil: Fossil }) {
   if (fossil.image) {
     return (
       <img
         src={fossil.image}
         alt={`${fossil.name}の画像`}
-        className="h-auto w-full max-w-[230px] object-contain drop-shadow-[0_12px_24px_rgba(0,0,0,0.25)]"
+        className="h-auto max-h-[28vh] w-full rounded-2xl object-contain drop-shadow-[0_12px_24px_rgba(0,0,0,0.25)]"
       />
     );
   }
 
   return (
     <div
-      className="fossil-svg text-white [&_svg]:h-auto [&_svg]:w-full [&_svg]:max-w-[230px]"
+      className="fossil-svg text-white [&_svg]:h-auto [&_svg]:w-full [&_svg]:max-w-[280px]"
       dangerouslySetInnerHTML={{ __html: fossil.art }}
     />
   );
@@ -294,7 +303,7 @@ function App() {
                           backgroundImage: `radial-gradient(circle at top, color-mix(in srgb, ${fossil.accent} 28%, transparent), transparent 60%), linear-gradient(180deg, rgba(255,255,255,0.04), rgba(0,0,0,0.14))`,
                         }}
                       >
-                        <FossilArt fossil={fossil} />
+                        <FossilCardArt fossil={fossil} />
                       </div>
 
                       <p className="mt-[18px] text-xs text-[#a7bbb2]">{fossil.sub_category}</p>
@@ -321,7 +330,7 @@ function App() {
               )}
             </div>
 
-            <aside className="sticky top-6 rounded-[30px] border border-white/10 bg-[rgba(16,28,31,0.82)] p-[22px] shadow-[0_24px_80px_rgba(0,0,0,0.28)] backdrop-blur-xl max-lg:static">
+            <aside className="sticky top-6 max-h-[calc(100vh-3rem)] overflow-y-auto rounded-[30px] border border-white/10 bg-[rgba(16,28,31,0.82)] p-[22px] shadow-[0_24px_80px_rgba(0,0,0,0.28)] backdrop-blur-xl max-lg:static max-lg:max-h-none max-lg:overflow-visible">
               {selectedFossil ? (
                 <>
                   <p className="text-xs uppercase tracking-[0.22em] text-[#a7bbb2]">Specimen Detail</p>
@@ -333,7 +342,7 @@ function App() {
                   </div>
 
                   <div className="mt-[18px] rounded-[22px] bg-[radial-gradient(circle_at_top,rgba(203,180,137,0.22),transparent_58%),linear-gradient(180deg,rgba(255,255,255,0.04),rgba(0,0,0,0.12))] p-[18px]">
-                    <FossilArt fossil={selectedFossil} />
+                    <FossilDetailImage fossil={selectedFossil} />
                   </div>
 
                   <div className="mt-5 flex flex-wrap gap-2.5">
