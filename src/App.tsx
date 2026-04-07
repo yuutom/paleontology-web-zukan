@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
-import { fossils, timelineItems, type Fossil } from "./data/fossils";
+import { fossils, type Fossil } from "./data/fossils";
+import { timelineEntries } from "./data/timeline";
 
 const allEras = ["all", ...new Set(fossils.map((item) => item.era))];
 const allCategories = ["all", ...new Set(fossils.map((item) => item.category))];
@@ -18,6 +19,19 @@ const eraDistribution = Object.entries(
 );
 
 const maxEraCount = Math.max(...eraDistribution.map(([, count]) => count));
+
+function formatMillionsOfYears(value: number) {
+  if (value === 0) {
+    return "現在";
+  }
+
+  const years = Math.round(value * 10000);
+  return `約${years.toLocaleString("ja-JP")}万年前`;
+}
+
+function formatTimelineRange(from: number, to: number) {
+  return `${formatMillionsOfYears(from)} - ${formatMillionsOfYears(to)}`;
+}
 
 function FossilArt({ fossil }: { fossil: Fossil }) {
   return (
@@ -187,16 +201,19 @@ function App() {
             </div>
 
             <div className="mt-6 grid gap-3.5 [grid-template-columns:repeat(auto-fit,minmax(200px,1fr))]">
-              {timelineItems.map((item) => (
+              {timelineEntries.map((item) => (
                 <article
-                  key={item.era}
+                  key={item.name}
                   className="relative rounded-[18px] border border-white/7 bg-[linear-gradient(135deg,rgba(255,255,255,0.05),rgba(0,0,0,0.1)),rgba(255,255,255,0.02)] p-[18px] before:absolute before:inset-y-0 before:left-0 before:w-1 before:rounded-full before:bg-[linear-gradient(180deg,#8cc6ba,#c98e79)] before:content-['']"
                 >
-                  <span className="text-xs uppercase tracking-[0.12em] text-[#a7bbb2]">{item.period}</span>
+                  <span className="text-xs uppercase tracking-[0.12em] text-[#a7bbb2]">
+                    {formatTimelineRange(item.from, item.to)}
+                  </span>
                   <strong className="mt-3 block font-['Iowan_Old_Style','Palatino_Linotype','Book_Antiqua',serif] text-xl">
-                    {item.era}
+                    {item.name}
                   </strong>
-                  <p className="mt-3 leading-7 text-[#d0dbd4]">{item.text}</p>
+                  <p className="mt-2 text-sm text-[#a7bbb2]">{item.era}</p>
+                  <p className="mt-3 leading-7 text-[#d0dbd4]">{item.description}</p>
                 </article>
               ))}
             </div>

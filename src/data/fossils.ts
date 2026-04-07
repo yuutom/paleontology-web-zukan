@@ -10,12 +10,6 @@ export type Fossil = {
   art: string;
 };
 
-export type TimelineEntry = {
-  era: string;
-  period: string;
-  text: string;
-};
-
 export const fossils: Fossil[] = [
   {
     id: "anomalocaris",
@@ -112,38 +106,5 @@ export const fossils: Fossil[] = [
       "非常に長い犬歯で知られる大型ネコ科動物。氷期の環境に適応し、北米から南米にかけて繁栄しました。恐竜ではなく新生代の哺乳類です。",
     accent: "#d3b377",
     art: `<svg viewBox="0 0 260 180" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="スミロドンのイラスト"><path d="M47 116C56 88 84 70 122 70C161 70 186 84 205 106L184 138H69C57 133 51 125 47 116Z" fill="#D3B377"/><path d="M153 69C164 50 183 40 203 43C218 45 225 58 218 69C213 77 202 83 188 82" stroke="#EBD9B0" stroke-width="10" stroke-linecap="round"/><path d="M92 136L84 158M165 138L172 157" stroke="#8B6A35" stroke-width="8" stroke-linecap="round"/><path d="M186 84L194 109M201 84L206 109" stroke="#FFF3D8" stroke-width="5" stroke-linecap="round"/><circle cx="199" cy="59" r="4" fill="#0F1417"/></svg>`,
-  },
-];
-
-export const timelineItems: TimelineEntry[] = [
-  {
-    era: "カンブリア紀",
-    period: "約5億4,100万年前 - 約4億8,500万年前",
-    text: "海中生物の爆発的多様化。複雑な眼や殻を持つ生物が多数出現。",
-  },
-  {
-    era: "古生代",
-    period: "約5億4,100万年前 - 約2億5,200万年前",
-    text: "魚類、昆虫、両生類が拡大し、三葉虫や巨大海生生物も繁栄。",
-  },
-  {
-    era: "デボン紀",
-    period: "約4億1,900万年前 - 約3億5,900万年前",
-    text: "魚の時代。大型捕食魚や初期の森林生態系が広がる。",
-  },
-  {
-    era: "ジュラ紀",
-    period: "約2億100万年前 - 約1億4,500万年前",
-    text: "巨大恐竜と海生爬虫類が地球各地で栄えた時代。",
-  },
-  {
-    era: "白亜紀",
-    period: "約1億4,500万年前 - 約6,600万年前",
-    text: "花の進化とともに恐竜・翼竜が多様化し、末期に大量絶滅が発生。",
-  },
-  {
-    era: "第四紀",
-    period: "約258万年前 - 現在",
-    text: "氷期を背景に大型哺乳類が繁栄し、人類も登場。",
   },
 ];
