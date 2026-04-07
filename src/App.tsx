@@ -1,9 +1,9 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { fossils, type Fossil } from "./data/fossils";
 import { timelineEntries } from "./data/timeline";
 
 const GRID_DESCRIPTION_MAX_LENGTH = 70;
-const GRID_DESCRIPTION_MAX_LENGTH_MOBILE = 40;
+const GRID_DESCRIPTION_MAX_LENGTH_MOBILE = 35;
 
 const allTimelineEntries = [
   "all",
@@ -282,7 +282,9 @@ function FossilDetailPanel({
         {fossil.description}
       </p>
 
-      <div className={`flex flex-wrap gap-2.5 ${compact ? "mt-4" : "mt-[18px]"}`}>
+      <div
+        className={`gap-2.5 ${compact ? "mt-4 grid grid-cols-1" : "mt-[18px] flex flex-wrap"}`}
+      >
         {[
           ["名称", fossil.name],
           ["地質時代", formatTimelineEntryLabel(fossil)],
@@ -293,7 +295,9 @@ function FossilDetailPanel({
         ].map(([label, value]) => (
           <div
             key={label}
-            className="min-w-[140px] flex-1 rounded-2xl border border-white/6 bg-white/[0.03] p-[14px] max-sm:min-w-0"
+            className={`rounded-2xl border border-white/6 bg-white/[0.03] p-[14px] ${
+              compact ? "min-w-0" : "min-w-[140px] flex-1 max-sm:min-w-0"
+            }`}
           >
             <span className="block text-xs text-[#a7bbb2]">{label}</span>
             <strong className="mt-1.5 block text-[0.98rem] text-[#f0f5f1]">{value}</strong>
@@ -311,6 +315,8 @@ function App() {
   const [selectedId, setSelectedId] = useState(fossils[0]?.id ?? "");
   const [isMobile, setIsMobile] = useState(false);
   const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
+  const [isDetailModalVisible, setIsDetailModalVisible] = useState(false);
+  const detailModalTimerRef = useRef<number | null>(null);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(max-width: 639px)");
@@ -329,6 +335,7 @@ function App() {
   useEffect(() => {
     if (!isMobile) {
       setIsDetailModalOpen(false);
+      setIsDetailModalVisible(false);
       return;
     }
 
@@ -375,8 +382,30 @@ function App() {
   useEffect(() => {
     if (!selectedFossil) {
       setIsDetailModalOpen(false);
+      setIsDetailModalVisible(false);
     }
   }, [selectedFossil]);
+
+  useEffect(() => {
+    return () => {
+      if (detailModalTimerRef.current !== null) {
+        window.clearTimeout(detailModalTimerRef.current);
+      }
+    };
+  }, []);
+
+  const closeDetailModal = () => {
+    if (detailModalTimerRef.current !== null) {
+      window.clearTimeout(detailModalTimerRef.current);
+    }
+
+    setIsDetailModalOpen(false);
+
+    detailModalTimerRef.current = window.setTimeout(() => {
+      setIsDetailModalVisible(false);
+      detailModalTimerRef.current = null;
+    }, 550);
+  };
 
   return (
     <div className="min-h-screen bg-[radial-gradient(circle_at_top_left,rgba(109,147,136,0.22),transparent_30%),radial-gradient(circle_at_top_right,rgba(201,142,121,0.18),transparent_28%),linear-gradient(180deg,#162126_0%,#0d1215_48%,#090c0e_100%)] text-stone-100">
@@ -581,7 +610,17 @@ function App() {
                       onClick={() => {
                         setSelectedId(fossil.id);
                         if (isMobile) {
-                          setIsDetailModalOpen(true);
+                          if (detailModalTimerRef.current !== null) {
+                            window.clearTimeout(detailModalTimerRef.current);
+                            detailModalTimerRef.current = null;
+                          }
+                          setIsDetailModalOpen(false);
+                          setIsDetailModalVisible(true);
+                          window.requestAnimationFrame(() => {
+                            window.requestAnimationFrame(() => {
+                              setIsDetailModalOpen(true);
+                            });
+                          });
                         }
                       }}
                       className={`group cursor-pointer overflow-hidden rounded-[26px] border border-white/10 p-[18px] shadow-[0_24px_80px_rgba(0,0,0,0.28)] backdrop-blur-xl transition duration-200 hover:-translate-y-1 hover:border-[#f3d7a1]/25 max-sm:rounded-[18px] max-sm:p-2 ${
@@ -643,22 +682,30 @@ function App() {
         </main>
       </div>
 
-      {isMobile && isDetailModalOpen && selectedFossil ? (
-        <div className="fixed inset-0 z-50 flex items-end bg-[rgba(6,10,12,0.78)] backdrop-blur-sm sm:hidden">
+      {isMobile && isDetailModalVisible && selectedFossil ? (
+        <div
+          className={`fixed inset-0 z-50 flex items-end backdrop-blur-sm transition-[background-color,opacity] duration-[260ms] ease-out sm:hidden ${
+            isDetailModalOpen ? "bg-[rgba(6,10,12,0.78)] opacity-100" : "bg-[rgba(6,10,12,0)] opacity-0"
+          }`}
+        >
           <button
             type="button"
             aria-label="詳細を閉じる"
             className="absolute inset-0"
-            onClick={() => setIsDetailModalOpen(false)}
+            onClick={closeDetailModal}
           />
-          <div className="relative max-h-[88vh] w-full overflow-y-auto rounded-t-[28px] border border-white/10 bg-[rgba(16,28,31,0.96)] p-4 shadow-[0_-24px_80px_rgba(0,0,0,0.35)]">
+          <div
+            className={`relative max-h-[88vh] w-full overflow-y-auto rounded-t-[28px] border border-white/10 bg-[rgba(16,28,31,0.96)] p-4 shadow-[0_-24px_80px_rgba(0,0,0,0.35)] transition-transform duration-[260ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
+              isDetailModalOpen ? "translate-y-0" : "translate-y-full"
+            }`}
+          >
             <div className="mx-auto mb-4 h-1.5 w-14 rounded-full bg-white/15" />
             <div className="mb-4 flex items-center justify-between gap-4">
               <p className="text-xs uppercase tracking-[0.22em] text-[#a7bbb2]">Specimen Detail</p>
               <button
                 type="button"
                 className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs text-[#dce6e0]"
-                onClick={() => setIsDetailModalOpen(false)}
+                onClick={closeDetailModal}
               >
                 閉じる
               </button>
