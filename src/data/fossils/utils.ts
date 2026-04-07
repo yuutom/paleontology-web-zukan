@@ -2,7 +2,7 @@ import { timelineEntries, type TimelineEntry } from "../timeline";
 import type { Fossil, FossilSource } from "./types";
 
 function overlapsTimeline(source: FossilSource, entry: TimelineEntry) {
-  return source.from >= entry.to && source.to <= entry.from;
+  return source.from >= entry.to && source.to < entry.from;
 }
 
 export function withTimelineEntries(source: FossilSource): Fossil {

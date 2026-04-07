@@ -135,6 +135,107 @@ function getCollapsedDescription(description: string, maxLength = GRID_DESCRIPTI
   return `${description.slice(0, maxLength).trimEnd()}…`;
 }
 
+function HeroWorldIllustration() {
+  return (
+    <div className="relative mt-7 overflow-hidden rounded-[28px] ,rgba(6,11,14,0.42))]">
+        <svg
+          viewBox="0 0 860 360"
+          role="img"
+          aria-label="原始の海と陸、化石層を描いた装飾イラスト"
+          className="h-auto w-full"
+        >
+          <defs>
+            <linearGradient id="skyGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#162126" />
+              <stop offset="55%" stopColor="#1c3130" />
+              <stop offset="100%" stopColor="#332720" />
+            </linearGradient>
+            <linearGradient id="waterFade" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor="#4f8f8b" stopOpacity="0.62" />
+              <stop offset="100%" stopColor="#0c1a1f" stopOpacity="0.05" />
+            </linearGradient>
+            <linearGradient id="earthFade" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor="#6d5643" stopOpacity="0.92" />
+              <stop offset="100%" stopColor="#1a1918" stopOpacity="0.98" />
+            </linearGradient>
+            <radialGradient id="sunMist" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stopColor="#f3d7a1" stopOpacity="0.8" />
+              <stop offset="100%" stopColor="#f3d7a1" stopOpacity="0" />
+            </radialGradient>
+            <filter id="softBlur" x="-20%" y="-20%" width="140%" height="140%">
+              <feGaussianBlur stdDeviation="12" />
+            </filter>
+          </defs>
+
+          <rect width="860" height="360" rx="24" fill="url(#skyGlow)" />
+          <circle cx="704" cy="74" r="66" fill="url(#sunMist)" />
+          <ellipse cx="684" cy="112" rx="124" ry="42" fill="#d9b988" fillOpacity="0.12" filter="url(#softBlur)" />
+
+          <path
+            d="M0 154C72 138 133 132 215 143C288 153 373 190 456 177C538 164 613 100 699 108C758 114 811 138 860 158V360H0Z"
+            fill="url(#waterFade)"
+          />
+          <path
+            d="M0 230C79 197 135 188 218 199C312 211 385 247 469 242C556 238 653 198 730 208C786 216 826 242 860 262V360H0Z"
+            fill="url(#earthFade)"
+          />
+
+          <path d="M0 142C48 126 103 122 157 132" stroke="#b7dcd5" strokeOpacity="0.35" strokeWidth="3" fill="none" />
+          <path d="M88 159C136 148 192 149 252 164" stroke="#b7dcd5" strokeOpacity="0.28" strokeWidth="2.5" fill="none" />
+          <path d="M500 138C549 120 606 118 674 132" stroke="#ffe2b9" strokeOpacity="0.26" strokeWidth="3" fill="none" />
+
+          <g fill="none" stroke="#d5ece6" strokeOpacity="0.78" strokeLinecap="round">
+            <path d="M130 182C153 157 198 155 224 178C248 199 246 235 214 251C176 268 133 241 133 200C133 182 143 166 159 158" strokeWidth="4.5" />
+            <path d="M158 178C175 166 197 166 210 180C223 195 220 216 203 227C183 240 159 228 157 206C156 195 161 185 169 179" strokeWidth="3" />
+            <path d="M182 188C191 186 200 191 202 200C204 209 198 218 189 219C181 220 173 214 172 205" strokeWidth="2.4" />
+            <path d="M104 204C130 200 152 207 170 225" strokeWidth="2.2" strokeOpacity="0.55" />
+          </g>
+
+          <g transform="translate(330 150)" fill="none" stroke="#d7c39a" strokeOpacity="0.82" strokeLinecap="round">
+            <path d="M0 24C40 0 84 4 116 26C147 47 149 88 113 109C73 132 11 118 -11 76C-22 55 -18 37 0 24Z" strokeWidth="4" />
+            <path d="M18 37C43 20 77 22 97 40C118 58 118 84 94 100C66 118 23 109 7 80C-2 64 1 48 18 37Z" strokeWidth="2.6" />
+            <path d="M113 47L150 31" strokeWidth="3.5" />
+            <path d="M113 58L155 54" strokeWidth="3.2" />
+            <path d="M112 70L152 78" strokeWidth="3" />
+            <path d="M112 84L144 102" strokeWidth="2.8" />
+            <path d="M37 35C58 44 74 61 84 84" strokeWidth="2.4" strokeOpacity="0.55" />
+          </g>
+
+          <g fill="#20382f" fillOpacity="0.95" stroke="#8bb7a8" strokeOpacity="0.46" strokeWidth="2">
+            <path d="M566 210C576 172 597 146 621 140C617 162 611 182 603 208C629 174 662 158 698 155C678 176 659 194 632 216C667 206 696 210 724 227C684 232 653 232 617 229C631 247 634 266 626 294C611 272 600 253 595 228C580 251 561 262 534 268C543 243 552 228 566 210Z" />
+            <path d="M694 200C703 171 718 150 739 145C738 163 734 179 728 198C750 176 777 164 807 166C790 182 773 195 751 211C781 207 803 212 826 225C793 228 767 228 738 225C749 240 751 258 746 281C734 262 726 247 721 225C708 243 692 253 670 257C677 238 684 224 694 200Z" />
+          </g>
+
+          <g fill="none" stroke="#c8ddd6" strokeOpacity="0.9" strokeLinecap="round">
+            <path d="M484 229C501 212 529 208 548 222C565 235 565 261 547 275C525 292 490 285 476 263C466 248 469 236 484 229Z" strokeWidth="3.8" />
+            <path d="M485 244C505 231 528 231 541 244C554 257 551 277 535 285C515 295 488 288 478 270C472 259 474 249 485 244Z" strokeWidth="2.5" />
+            <path d="M539 235L572 220" strokeWidth="2.6" />
+            <path d="M540 247L578 245" strokeWidth="2.5" />
+            <path d="M541 261L575 272" strokeWidth="2.3" />
+          </g>
+
+          <g transform="translate(90 254)" fill="#c9b58d" fillOpacity="0.92">
+            <circle cx="0" cy="0" r="5" />
+            <circle cx="18" cy="-8" r="3.5" />
+            <circle cx="34" cy="-2" r="4" />
+            <circle cx="52" cy="-10" r="3" />
+          </g>
+
+          <g transform="translate(246 238)" stroke="#e2d4b5" strokeOpacity="0.82" strokeLinecap="round">
+            <path d="M0 66C18 38 45 13 81 0C95 33 92 61 72 84C54 107 25 120 -1 118C-2 98 -1 82 0 66Z" fill="#37261d" fillOpacity="0.65" strokeWidth="2.5" />
+            <path d="M21 84C36 61 50 44 72 28" strokeWidth="2.1" />
+            <path d="M36 102C46 82 57 66 73 50" strokeWidth="1.9" />
+          </g>
+
+          <g transform="translate(0 0)" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M70 278C118 256 184 254 235 277" stroke="#87b2a6" strokeOpacity="0.28" strokeWidth="2" fill="none" />
+            <path d="M558 296C621 280 697 285 772 313" stroke="#d6bd90" strokeOpacity="0.18" strokeWidth="2" fill="none" />
+          </g>
+        </svg>
+    </div>
+  );
+}
+
 function App() {
   const [query, setQuery] = useState("");
   const [era, setEra] = useState("all");
@@ -196,7 +297,7 @@ function App() {
                 古生物Web図鑑
               </h1>
 
-              <p className="mt-5 max-w-[60ch] leading-8 text-[#d1ddd5]">
+              <p className="mt-3 max-w-[60ch] leading-8 text-[#d1ddd5]">
                 海から陸、三葉虫から巨大恐竜まで。古生物の姿、時代、分類、生息年代を直感的にたどれるインタラクティブなWeb図鑑です。
               </p>
 
@@ -213,6 +314,8 @@ function App() {
                   </div>
                 ))}
               </div>
+
+              <HeroWorldIllustration />
             </div>
 
             <aside className="self-end rounded-[28px] border border-white/6 bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(0,0,0,0.14))] p-[22px]">
