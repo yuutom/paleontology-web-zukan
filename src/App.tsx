@@ -318,7 +318,7 @@ function App() {
               <HeroWorldIllustration />
             </div>
 
-            <aside className="self-end rounded-[28px] border border-white/6 bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(0,0,0,0.14))] p-[22px]">
+            <aside className="self-end rounded-[28px] border border-white/6 bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(0,0,0,0.14))] p-[22px] max-sm:hidden">
               <p className="text-xs uppercase tracking-[0.22em] text-[#a7bbb2]">Era Spectrum</p>
               <div className="mt-[18px] grid gap-3.5">
                 {eraDistribution.map(([name, count]) => (
@@ -341,8 +341,8 @@ function App() {
           </div>
         </header>
 
-        <main className="grid gap-6">
-          <section className="rounded-[28px] border border-white/10 bg-[rgba(16,28,31,0.82)] p-6 shadow-[0_24px_80px_rgba(0,0,0,0.28)] backdrop-blur-xl max-sm:rounded-3xl">
+        <main className="grid min-w-0 gap-6">
+          <section className="min-w-0 overflow-hidden rounded-[28px] border border-white/10 bg-[rgba(16,28,31,0.82)] p-6 shadow-[0_24px_80px_rgba(0,0,0,0.28)] backdrop-blur-xl max-sm:rounded-3xl max-sm:p-4">
             <div className="flex items-end justify-between gap-6 max-sm:flex-col max-sm:items-start">
               <div>
                 <p className="text-xs uppercase tracking-[0.22em] text-[#a7bbb2]">Deep Time</p>
@@ -352,7 +352,7 @@ function App() {
               </div>
             </div>
 
-            <div className="mt-6 rounded-[22px] border border-white/8 bg-[linear-gradient(180deg,rgba(255,255,255,0.03),rgba(0,0,0,0.12))] p-5">
+            <div className="mt-6 rounded-[22px] border border-white/8 bg-[linear-gradient(180deg,rgba(255,255,255,0.03),rgba(0,0,0,0.12))] p-5 max-sm:p-3">
               <div className="mx-auto max-w-[980px]">
                 <div className="mb-3 flex items-center justify-between gap-4 text-xs text-[#8fa39a] max-sm:flex-col max-sm:items-start">
                   <span>横スクロールで移動</span>
@@ -360,34 +360,34 @@ function App() {
               </div>
 
               <div className="mx-auto max-w-[980px] overflow-x-auto pb-3 [scrollbar-color:rgba(243,215,161,0.4)_transparent] [scrollbar-width:thin]">
-                <div className="relative flex w-max min-w-[3500px] items-start gap-0 px-2 py-4">
+                <div className="relative flex min-w-max items-start gap-0 px-2 py-4 max-sm:px-1 max-sm:py-3">
                   <div className="pointer-events-none absolute left-0 right-0 top-[43px] h-px bg-[linear-gradient(90deg,rgba(243,215,161,0.2),rgba(243,215,161,0.75),rgba(140,198,186,0.75),rgba(255,255,255,0.15))]" />
 
                   {timelineEntries.map((item, index) => (
                     <article
                       key={item.name}
-                      className="relative w-[250px] shrink-0 pr-6 last:pr-2"
+                      className="relative w-[250px] shrink-0 pr-6 last:pr-2 max-sm:w-[176px] max-sm:pr-3"
                     >
                       <div className="relative z-10 flex items-center gap-3">
-                        <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-[#f3d7a1]/30 bg-[#172126] text-sm font-semibold text-[#f3d7a1] shadow-[0_0_0_8px_rgba(22,33,38,0.95)]">
+                        <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-[#f3d7a1]/30 bg-[#172126] text-sm font-semibold text-[#f3d7a1] shadow-[0_0_0_8px_rgba(22,33,38,0.95)] max-sm:h-8 max-sm:w-8 max-sm:text-[0.7rem] max-sm:shadow-[0_0_0_6px_rgba(22,33,38,0.95)]">
                           {String(index + 1).padStart(2, "0")}
                         </span>
 
                       </div>
 
-                      <div className="mt-5 rounded-[24px] border border-white/8 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(5,10,12,0.34))] p-5 shadow-[0_18px_44px_rgba(0,0,0,0.18)]">
+                      <div className="mt-5 rounded-[24px] border border-white/8 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(5,10,12,0.34))] p-5 shadow-[0_18px_44px_rgba(0,0,0,0.18)] max-sm:mt-4 max-sm:rounded-[20px] max-sm:p-3.5">
                         <span
-                          className={`inline-flex rounded-full border px-3 py-1.5 text-[0.72rem] font-medium ${getEraTone(item.era)}`}
+                          className={`inline-flex rounded-full border px-3 py-1.5 text-[0.72rem] font-medium max-sm:px-2.5 max-sm:py-1 max-sm:text-[0.62rem] ${getEraTone(item.era)}`}
                         >
                           {item.era}
                         </span>
-                        <strong className="mt-4 block font-['Iowan_Old_Style','Palatino_Linotype','Book_Antiqua',serif] text-[1.2rem] leading-tight text-[#f4f7f4]">
+                        <strong className="mt-4 block font-['Iowan_Old_Style','Palatino_Linotype','Book_Antiqua',serif] text-[1.2rem] leading-tight text-[#f4f7f4] max-sm:mt-3 max-sm:text-[0.98rem]">
                           {item.name}
                         </strong>
-                        <p className="mt-3 text-[0.95rem] leading-7 text-[#e5ede8]">
+                        <p className="mt-3 text-[0.95rem] leading-7 text-[#e5ede8] max-sm:mt-2 max-sm:text-[0.8rem] max-sm:leading-6">
                           {item.summary}
                         </p>
-                        <p className="mt-4 text-xs text-[#8fa39a]">
+                        <p className="mt-4 text-xs text-[#8fa39a] max-sm:mt-3 max-sm:text-[0.68rem]">
                           {formatTimelineRange(item.from, item.to)}
                         </p>
                       </div>
@@ -398,7 +398,7 @@ function App() {
             </div>
           </section>
 
-          <section className="rounded-[28px] border border-white/10 bg-[rgba(16,28,31,0.82)] p-6 shadow-[0_24px_80px_rgba(0,0,0,0.28)] backdrop-blur-xl max-sm:rounded-3xl">
+          <section className="min-w-0 overflow-hidden rounded-[28px] border border-white/10 bg-[rgba(16,28,31,0.82)] p-6 shadow-[0_24px_80px_rgba(0,0,0,0.28)] backdrop-blur-xl max-sm:rounded-3xl max-sm:p-4">
             <div className="flex items-end justify-between gap-6 max-sm:flex-col max-sm:items-start">
               <div>
                 <p className="text-xs uppercase tracking-[0.22em] text-[#a7bbb2]">Explorer</p>
@@ -409,8 +409,8 @@ function App() {
               <p className="text-xs text-[#a7bbb2]">{filteredFossils.length} 件を表示中</p>
             </div>
 
-            <div className="mt-6 grid gap-4 md:grid-cols-[1.4fr_1fr_1fr]">
-              <label className="grid gap-2">
+            <div className="mt-6 grid min-w-0 gap-4 md:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)_minmax(0,1fr)]">
+              <label className="grid min-w-0 gap-2">
                 <span className="text-sm text-[#d6e2db]">キーワード</span>
                 <input
                   type="search"
@@ -421,7 +421,7 @@ function App() {
                 />
               </label>
 
-              <label className="grid gap-2">
+              <label className="grid min-w-0 gap-2">
                 <span className="text-sm text-[#d6e2db]">地質時代</span>
                 <select
                   value={era}
@@ -436,7 +436,7 @@ function App() {
                 </select>
               </label>
 
-              <label className="grid gap-2">
+              <label className="grid min-w-0 gap-2">
                 <span className="text-sm text-[#d6e2db]">分類</span>
                 <select
                   value={category}
@@ -453,8 +453,8 @@ function App() {
             </div>
           </section>
 
-          <section className="grid items-start gap-6 lg:grid-cols-[minmax(0,1.35fr)_minmax(310px,0.8fr)]">
-            <div className="grid gap-[18px] [grid-template-columns:repeat(auto-fit,minmax(230px,1fr))]">
+          <section className="grid min-w-0 items-start gap-6 lg:grid-cols-[minmax(0,1.35fr)_minmax(310px,0.8fr)]">
+            <div className="grid min-w-0 gap-[18px] [grid-template-columns:repeat(auto-fit,minmax(230px,1fr))] max-sm:[grid-template-columns:minmax(0,1fr)]">
               {filteredFossils.length === 0 ? (
                 <div className="col-span-full rounded-3xl border border-dashed border-white/12 px-8 py-10 text-center leading-8 text-[#d0dbd4]">
                   条件に一致する古生物は見つかりませんでした。検索語や絞り込み条件を変更してください。
@@ -512,7 +512,7 @@ function App() {
               )}
             </div>
 
-            <aside className="sticky top-6 max-h-[calc(100vh-3rem)] overflow-y-auto rounded-[30px] border border-white/10 bg-[rgba(16,28,31,0.82)] p-[22px] shadow-[0_24px_80px_rgba(0,0,0,0.28)] backdrop-blur-xl max-lg:static max-lg:max-h-none max-lg:overflow-visible">
+            <aside className="sticky top-6 min-w-0 max-h-[calc(100vh-3rem)] overflow-y-auto rounded-[30px] border border-white/10 bg-[rgba(16,28,31,0.82)] p-[22px] shadow-[0_24px_80px_rgba(0,0,0,0.28)] backdrop-blur-xl max-lg:static max-lg:max-h-none max-lg:overflow-visible max-sm:p-4">
               {selectedFossil ? (
                 <>
                   <p className="text-xs uppercase tracking-[0.22em] text-[#a7bbb2]">Specimen Detail</p>
@@ -557,7 +557,7 @@ function App() {
                     ].map(([label, value]) => (
                       <div
                         key={label}
-                        className="min-w-[140px] flex-1 rounded-2xl border border-white/6 bg-white/[0.03] p-[14px]"
+                        className="min-w-[140px] flex-1 rounded-2xl border border-white/6 bg-white/[0.03] p-[14px] max-sm:min-w-0"
                       >
                         <span className="block text-xs text-[#a7bbb2]">{label}</span>
                         <strong className="mt-1.5 block text-[0.98rem] text-[#f0f5f1]">{value}</strong>
