@@ -3,8 +3,8 @@ import type { FossilSource } from "./types";
 export const sarcosuchus: FossilSource = {
   id: "sarcosuchus",
   name: "サルコスクス",
-  from: 12.5,
-  to: 11.2,
+  from: 125,
+  to: 112,
   length: 1100,
   category: "爬虫類",
   sub_category: "ワニ形類",

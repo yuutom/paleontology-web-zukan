@@ -3,8 +3,8 @@ import type { FossilSource } from "./types";
 export const trilobite: FossilSource = {
   id: "trilobite",
   name: "三葉虫",
-  from: 52.1,
-  to: 25.2,
+  from: 521,
+  to: 252,
   length: 30,
   category: "節足動物",
   sub_category: "三葉虫類",

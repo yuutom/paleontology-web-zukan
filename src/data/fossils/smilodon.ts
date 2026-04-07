@@ -3,8 +3,8 @@ import type { FossilSource } from "./types";
 export const smilodon: FossilSource = {
   id: "smilodon",
   name: "スミロドン",
-  from: 0.25,
-  to: 0.001,
+  from: 2.5,
+  to: 0.01,
   length: 210,
   category: "哺乳類",
   sub_category: "ネコ科",

@@ -3,8 +3,8 @@ import type { FossilSource } from "./types";
 export const deinonychus: FossilSource = {
   id: "deinonychus",
   name: "デイノニクス",
-  from: 11.5,
-  to: 10.8,
+  from: 115,
+  to: 108,
   length: 340,
   category: "恐竜",
   sub_category: "獣脚類",

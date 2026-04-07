@@ -3,8 +3,8 @@ import type { FossilSource } from "./types";
 export const grypania: FossilSource = {
   id: "grypania",
   name: "グリパニア",
-  from: 210,
-  to: 140,
+  from: 2100,
+  to: 1400,
   length: 80,
   category: "原始的多細胞生物",
   sub_category: "渦巻状生物",

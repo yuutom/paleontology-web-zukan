@@ -3,8 +3,8 @@ import type { FossilSource } from "./types";
 export const scutosaurus: FossilSource = {
   id: "scutosaurus",
   name: "スクトサウルス",
-  from: 26.0,
-  to: 25.4,
+  from: 260,
+  to: 254,
   length: 300,
   category: "爬虫類",
   sub_category: "パレイアサウルス類",

@@ -10,5 +10,6 @@ export type TimelineEntry = {
   from: number;
   to: number;
   era: GeologicalEra;
+  summary: string;
   description: string;
 };

@@ -3,8 +3,8 @@ import type { FossilSource } from "./types";
 export const tyrannosaurus: FossilSource = {
   id: "tyrannosaurus",
   name: "ティラノサウルス",
-  from: 6.83,
-  to: 6.6,
+  from: 68.3,
+  to: 66,
   length: 1200,
   category: "恐竜",
   sub_category: "獣脚類",

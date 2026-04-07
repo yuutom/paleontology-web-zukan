@@ -3,8 +3,8 @@ import type { FossilSource } from "./types";
 export const charnia: FossilSource = {
   id: "charnia",
   name: "チャルニア",
-  from: 57,
-  to: 55,
+  from: 570,
+  to: 550,
   length: 150,
   category: "エディアカラ生物群",
   sub_category: "レンジオモルフ類",

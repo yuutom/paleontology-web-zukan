@@ -3,8 +3,8 @@ import type { FossilSource } from "./types";
 export const cephalaspis: FossilSource = {
   id: "cephalaspis",
   name: "ケファラスピス",
-  from: 41.5,
-  to: 40.8,
+  from: 415,
+  to: 408,
   length: 60,
   category: "魚類",
   sub_category: "無顎類",

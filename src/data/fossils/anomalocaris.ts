@@ -3,8 +3,8 @@ import type { FossilSource } from "./types";
 export const anomalocaris: FossilSource = {
   id: "anomalocaris",
   name: "アノマロカリス",
-  from: 52,
-  to: 52,
+  from: 520,
+  to: 520,
   length: 60,
   category: "節足動物",
   sub_category: "放射歯類",

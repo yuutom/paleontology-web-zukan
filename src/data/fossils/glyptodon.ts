@@ -3,8 +3,8 @@ import type { FossilSource } from "./types";
 export const glyptodon: FossilSource = {
   id: "glyptodon",
   name: "グリプトドン",
-  from: 0.258,
-  to: 0.011,
+  from: 2.58,
+  to: 0.11,
   length: 300,
   category: "哺乳類",
   sub_category: "被甲目",

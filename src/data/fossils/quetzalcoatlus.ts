@@ -3,8 +3,8 @@ import type { FossilSource } from "./types";
 export const quetzalcoatlus: FossilSource = {
   id: "quetzalcoatlus",
   name: "ケツァルコアトルス",
-  from: 7,
-  to: 6.6,
+  from: 70,
+  to: 66,
   length: 550,
   category: "爬虫類",
   sub_category: "翼竜",

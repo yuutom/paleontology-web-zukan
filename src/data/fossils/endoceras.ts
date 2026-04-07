@@ -3,8 +3,8 @@ import type { FossilSource } from "./types";
 export const endoceras: FossilSource = {
   id: "endoceras",
   name: "エンドケラス",
-  from: 47.8,
-  to: 46.5,
+  from: 478,
+  to: 465,
   length: 550,
   category: "軟体動物",
   sub_category: "直角貝類",

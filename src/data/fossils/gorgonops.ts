@@ -3,8 +3,8 @@ import type { FossilSource } from "./types";
 export const gorgonops: FossilSource = {
   id: "gorgonops",
   name: "ゴルゴノプス",
-  from: 26.6,
-  to: 25.6,
+  from: 266,
+  to: 256,
   length: 320,
   category: "単弓類",
   sub_category: "ゴルゴノプス類",

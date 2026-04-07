@@ -3,8 +3,8 @@ import type { FossilSource } from "./types";
 export const diplodocus: FossilSource = {
   id: "diplodocus",
   name: "ディプロドクス",
-  from: 15.5,
-  to: 14.5,
+  from: 155,
+  to: 145,
   length: 2500,
   category: "恐竜",
   sub_category: "竜脚類",

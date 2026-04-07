@@ -3,8 +3,8 @@ import type { FossilSource } from "./types";
 export const pteranodon: FossilSource = {
   id: "pteranodon",
   name: "プテラノドン",
-  from: 8.6,
-  to: 7.2,
+  from: 86,
+  to: 72,
   length: 300,
   category: "爬虫類",
   sub_category: "翼竜",

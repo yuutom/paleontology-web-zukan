@@ -3,8 +3,8 @@ import type { FossilSource } from "./types";
 export const dickinsonia: FossilSource = {
   id: "dickinsonia",
   name: "ディッキンソニア",
-  from: 57.5,
-  to: 55.5,
+  from: 575,
+  to: 555,
   length: 100,
   category: "エディアカラ生物群",
   sub_category: "扁平体動物",

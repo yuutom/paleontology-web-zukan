@@ -3,8 +3,8 @@ import type { FossilSource } from "./types";
 export const pulmonoscorpius: FossilSource = {
   id: "pulmonoscorpius",
   name: "プルモノスコルピウス",
-  from: 33.2,
-  to: 32.4,
+  from: 332,
+  to: 324,
   length: 70,
   category: "節足動物",
   sub_category: "クモガタ類",

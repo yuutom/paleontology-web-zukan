@@ -3,8 +3,8 @@ import type { FossilSource } from "./types";
 export const parasaurolophus: FossilSource = {
   id: "parasaurolophus",
   name: "パラサウロロフス",
-  from: 7.65,
-  to: 7.3,
+  from: 76.5,
+  to: 73,
   length: 950,
   category: "恐竜",
   sub_category: "鳥脚類",

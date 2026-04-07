@@ -3,8 +3,8 @@ import type { FossilSource } from "./types";
 export const elasmotherium: FossilSource = {
   id: "elasmotherium",
   name: "エラスモテリウム",
-  from: 0.26,
-  to: 0.039,
+  from: 2.6,
+  to: 0.39,
   length: 450,
   category: "哺乳類",
   sub_category: "サイ科",

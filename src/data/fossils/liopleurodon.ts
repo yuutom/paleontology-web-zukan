@@ -3,8 +3,8 @@ import type { FossilSource } from "./types";
 export const liopleurodon: FossilSource = {
   id: "liopleurodon",
   name: "リオプレウロドン",
-  from: 16.6,
-  to: 15.5,
+  from: 166,
+  to: 155,
   length: 700,
   category: "爬虫類",
   sub_category: "首短竜類",

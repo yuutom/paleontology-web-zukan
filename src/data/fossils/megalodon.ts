@@ -3,8 +3,8 @@ import type { FossilSource } from "./types";
 export const megalodon: FossilSource = {
   id: "megalodon",
   name: "メガロドン",
-  from: 2.3,
-  to: 0.036,
+  from: 23,
+  to: 0.36,
   length: 1800,
   category: "魚類",
   sub_category: "ネズミザメ目",

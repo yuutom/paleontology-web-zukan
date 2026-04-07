@@ -3,8 +3,8 @@ import type { FossilSource } from "./types";
 export const bangiomorpha: FossilSource = {
   id: "bangiomorpha",
   name: "バンギオモルファ",
-  from: 120,
-  to: 104,
+  from: 1200,
+  to: 1040,
   length: 6,
   category: "藻類",
   sub_category: "紅藻類",

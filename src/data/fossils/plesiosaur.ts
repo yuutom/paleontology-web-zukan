@@ -3,8 +3,8 @@ import type { FossilSource } from "./types";
 export const plesiosaur: FossilSource = {
   id: "plesiosaur",
   name: "プレシオサウルス",
-  from: 20.1,
-  to: 6.6,
+  from: 201,
+  to: 66,
   length: 350,
   category: "爬虫類",
   sub_category: "首長竜類",

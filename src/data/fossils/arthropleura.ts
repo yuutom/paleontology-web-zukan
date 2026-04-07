@@ -3,8 +3,8 @@ import type { FossilSource } from "./types";
 export const arthropleura: FossilSource = {
   id: "arthropleura",
   name: "アースロプレウラ",
-  from: 32.5,
-  to: 29.9,
+  from: 325,
+  to: 299,
   length: 230,
   category: "節足動物",
   sub_category: "多足類",

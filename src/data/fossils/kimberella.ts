@@ -3,8 +3,8 @@ import type { FossilSource } from "./types";
 export const kimberella: FossilSource = {
   id: "kimberella",
   name: "キンベレラ",
-  from: 56.5,
-  to: 55,
+  from: 565,
+  to: 550,
   length: 15,
   category: "エディアカラ生物群",
   sub_category: "左右相称動物様生物",

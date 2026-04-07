@@ -3,8 +3,8 @@ import type { FossilSource } from "./types";
 export const otavia: FossilSource = {
   id: "otavia",
   name: "オタヴィア",
-  from: 76,
-  to: 72,
+  from: 760,
+  to: 720,
   length: 1,
   category: "海綿動物様生物",
   sub_category: "初期動物群",

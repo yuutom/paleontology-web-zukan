@@ -30,25 +30,54 @@ const eraDistribution = Object.entries(
 
 const maxEraCount = Math.max(...eraDistribution.map(([, count]) => count));
 
-function formatMillionsOfYears(value: number) {
+function getEraTone(era: string) {
+  switch (era) {
+    case "原生代":
+      return "bg-[#7fb0a6]/16 text-[#bfe3d9] border-[#7fb0a6]/30";
+    case "古生代":
+      return "bg-[#87a8d8]/16 text-[#d5e6ff] border-[#87a8d8]/30";
+    case "中生代":
+      return "bg-[#d3a06f]/16 text-[#ffe3c5] border-[#d3a06f]/30";
+    case "新生代":
+      return "bg-[#c98e79]/16 text-[#ffd9ce] border-[#c98e79]/30";
+    default:
+      return "bg-white/8 text-[#dce6e0] border-white/10";
+  }
+}
+
+function formatJapaneseYearsAgo(value: number, options?: { approximate?: boolean; withSuffix?: boolean }) {
   if (value === 0) {
     return "現在";
   }
 
-  const years = Math.round(value * 10000);
-  return `約${years.toLocaleString("ja-JP")}万年前`;
+  const withSuffix = options?.withSuffix ?? true;
+  const totalTenThousandYears = Math.round(value * 100);
+  const oku = Math.floor(totalTenThousandYears / 10000);
+  const man = totalTenThousandYears % 10000;
+
+  const parts = [
+    oku > 0 ? `${oku}億` : "",
+    man > 0 ? `${man}万` : "",
+  ].filter(Boolean);
+
+  const body = parts.join("") || "0万";
+  const suffix = withSuffix ? "年前" : "年";
+
+  return `${body}${suffix}`;
 }
 
 function formatTimelineRange(from: number, to: number) {
-  return `${formatMillionsOfYears(from)} - ${formatMillionsOfYears(to)}`;
+  return `${formatJapaneseYearsAgo(from, { approximate: true, withSuffix: false })} - ${formatJapaneseYearsAgo(to, {
+    approximate: true,
+  })}`;
 }
 
 function formatCompactRange(from: number, to: number) {
   if (to === 0) {
-    return `${from} - 現在`;
+    return `${formatJapaneseYearsAgo(from, { withSuffix: false })} - 現在`;
   }
 
-  return `${from} - ${to}`;
+  return `${formatJapaneseYearsAgo(from, { withSuffix: false })} - ${formatJapaneseYearsAgo(to)}`;
 }
 
 function formatLength(length: number) {
@@ -213,6 +242,62 @@ function App() {
           <section className="rounded-[28px] border border-white/10 bg-[rgba(16,28,31,0.82)] p-6 shadow-[0_24px_80px_rgba(0,0,0,0.28)] backdrop-blur-xl max-sm:rounded-3xl">
             <div className="flex items-end justify-between gap-6 max-sm:flex-col max-sm:items-start">
               <div>
+                <p className="text-xs uppercase tracking-[0.22em] text-[#a7bbb2]">Deep Time</p>
+                <h2 className="mt-2 font-['Iowan_Old_Style','Palatino_Linotype','Book_Antiqua',serif] text-4xl font-semibold leading-none">
+                  地質時代のタイムライン
+                </h2>
+              </div>
+            </div>
+
+            <div className="mt-6 rounded-[22px] border border-white/8 bg-[linear-gradient(180deg,rgba(255,255,255,0.03),rgba(0,0,0,0.12))] p-5">
+              <div className="mx-auto max-w-[980px]">
+                <div className="mb-3 flex items-center justify-between gap-4 text-xs text-[#8fa39a] max-sm:flex-col max-sm:items-start">
+                  <span>横スクロールで移動</span>
+                </div>
+              </div>
+
+              <div className="mx-auto max-w-[980px] overflow-x-auto pb-3 [scrollbar-color:rgba(243,215,161,0.4)_transparent] [scrollbar-width:thin]">
+                <div className="relative flex w-max min-w-[3500px] items-start gap-0 px-2 py-4">
+                  <div className="pointer-events-none absolute left-0 right-0 top-[43px] h-px bg-[linear-gradient(90deg,rgba(243,215,161,0.2),rgba(243,215,161,0.75),rgba(140,198,186,0.75),rgba(255,255,255,0.15))]" />
+
+                  {timelineEntries.map((item, index) => (
+                    <article
+                      key={item.name}
+                      className="relative w-[250px] shrink-0 pr-6 last:pr-2"
+                    >
+                      <div className="relative z-10 flex items-center gap-3">
+                        <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-[#f3d7a1]/30 bg-[#172126] text-sm font-semibold text-[#f3d7a1] shadow-[0_0_0_8px_rgba(22,33,38,0.95)]">
+                          {String(index + 1).padStart(2, "0")}
+                        </span>
+
+                      </div>
+
+                      <div className="mt-5 rounded-[24px] border border-white/8 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(5,10,12,0.34))] p-5 shadow-[0_18px_44px_rgba(0,0,0,0.18)]">
+                        <span
+                          className={`inline-flex rounded-full border px-3 py-1.5 text-[0.72rem] font-medium ${getEraTone(item.era)}`}
+                        >
+                          {item.era}
+                        </span>
+                        <strong className="mt-4 block font-['Iowan_Old_Style','Palatino_Linotype','Book_Antiqua',serif] text-[1.2rem] leading-tight text-[#f4f7f4]">
+                          {item.name}
+                        </strong>
+                        <p className="mt-3 text-[0.95rem] leading-7 text-[#e5ede8]">
+                          {item.summary}
+                        </p>
+                        <p className="mt-4 text-xs text-[#8fa39a]">
+                          {formatTimelineRange(item.from, item.to)}
+                        </p>
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section className="rounded-[28px] border border-white/10 bg-[rgba(16,28,31,0.82)] p-6 shadow-[0_24px_80px_rgba(0,0,0,0.28)] backdrop-blur-xl max-sm:rounded-3xl">
+            <div className="flex items-end justify-between gap-6 max-sm:flex-col max-sm:items-start">
+              <div>
                 <p className="text-xs uppercase tracking-[0.22em] text-[#a7bbb2]">Explorer</p>
                 <h2 className="mt-2 font-['Iowan_Old_Style','Palatino_Linotype','Book_Antiqua',serif] text-4xl font-semibold leading-none">
                   古生物を探す
@@ -262,33 +347,6 @@ function App() {
                   ))}
                 </select>
               </label>
-            </div>
-          </section>
-
-          <section className="rounded-[28px] border border-white/10 bg-[rgba(16,28,31,0.82)] p-6 shadow-[0_24px_80px_rgba(0,0,0,0.28)] backdrop-blur-xl max-sm:rounded-3xl">
-            <div>
-              <p className="text-xs uppercase tracking-[0.22em] text-[#a7bbb2]">Deep Time</p>
-              <h2 className="mt-2 font-['Iowan_Old_Style','Palatino_Linotype','Book_Antiqua',serif] text-4xl font-semibold leading-none">
-                地球史のタイムライン
-              </h2>
-            </div>
-
-            <div className="mt-6 grid gap-3.5 [grid-template-columns:repeat(auto-fit,minmax(200px,1fr))]">
-              {timelineEntries.map((item) => (
-                <article
-                  key={item.name}
-                  className="relative rounded-[18px] border border-white/7 bg-[linear-gradient(135deg,rgba(255,255,255,0.05),rgba(0,0,0,0.1)),rgba(255,255,255,0.02)] p-[18px] before:absolute before:inset-y-0 before:left-0 before:w-1 before:rounded-full before:bg-[linear-gradient(180deg,#8cc6ba,#c98e79)] before:content-['']"
-                >
-                  <span className="text-xs uppercase tracking-[0.12em] text-[#a7bbb2]">
-                    {formatTimelineRange(item.from, item.to)}
-                  </span>
-                  <strong className="mt-3 block font-['Iowan_Old_Style','Palatino_Linotype','Book_Antiqua',serif] text-xl">
-                    {item.name}
-                  </strong>
-                  <p className="mt-2 text-sm text-[#a7bbb2]">{item.era}</p>
-                  <p className="mt-3 leading-7 text-[#d0dbd4]">{item.description}</p>
-                </article>
-              ))}
             </div>
           </section>
 

@@ -3,8 +3,8 @@ import type { FossilSource } from "./types";
 export const ichthyosaurus: FossilSource = {
   id: "ichthyosaurus",
   name: "イクチオサウルス",
-  from: 20.1,
-  to: 18.9,
+  from: 201,
+  to: 189,
   length: 350,
   category: "爬虫類",
   sub_category: "魚竜類",

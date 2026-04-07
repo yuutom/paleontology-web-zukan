@@ -3,8 +3,8 @@ import type { FossilSource } from "./types";
 export const triceratops: FossilSource = {
   id: "triceratops",
   name: "トリケラトプス",
-  from: 6.8,
-  to: 6.6,
+  from: 68,
+  to: 66,
   length: 900,
   category: "恐竜",
   sub_category: "角竜類",

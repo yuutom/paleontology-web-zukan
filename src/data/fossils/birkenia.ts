@@ -3,8 +3,8 @@ import type { FossilSource } from "./types";
 export const birkenia: FossilSource = {
   id: "birkenia",
   name: "ビルケニア",
-  from: 43.8,
-  to: 42.7,
+  from: 438,
+  to: 427,
   length: 18,
   category: "魚類",
   sub_category: "無顎類",

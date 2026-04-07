@@ -3,8 +3,8 @@ import type { FossilSource } from "./types";
 export const carnotaurus: FossilSource = {
   id: "carnotaurus",
   name: "カルノタウルス",
-  from: 7.2,
-  to: 6.9,
+  from: 72,
+  to: 69,
   length: 800,
   category: "恐竜",
   sub_category: "獣脚類",

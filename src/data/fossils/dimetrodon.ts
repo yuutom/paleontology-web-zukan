@@ -3,8 +3,8 @@ import type { FossilSource } from "./types";
 export const dimetrodon: FossilSource = {
   id: "dimetrodon",
   name: "ディメトロドン",
-  from: 29.5,
-  to: 27.2,
+  from: 295,
+  to: 272,
   length: 320,
   category: "単弓類",
   sub_category: "盤竜類",

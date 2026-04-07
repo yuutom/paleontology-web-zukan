@@ -3,8 +3,8 @@ import type { FossilSource } from "./types";
 export const meganeura: FossilSource = {
   id: "meganeura",
   name: "メガネウラ",
-  from: 31.7,
-  to: 30.9,
+  from: 317,
+  to: 309,
   length: 70,
   category: "節足動物",
   sub_category: "昆虫類",

@@ -3,8 +3,8 @@ import type { FossilSource } from "./types";
 export const velociraptor: FossilSource = {
   id: "velociraptor",
   name: "ヴェロキラプトル",
-  from: 7.55,
-  to: 7.15,
+  from: 75.5,
+  to: 71.5,
   length: 200,
   category: "恐竜",
   sub_category: "獣脚類",

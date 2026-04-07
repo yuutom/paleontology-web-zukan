@@ -3,8 +3,8 @@ import type { FossilSource } from "./types";
 export const spriggina: FossilSource = {
   id: "spriggina",
   name: "スプリッギナ",
-  from: 56,
-  to: 54.5,
+  from: 560,
+  to: 545,
   length: 5,
   category: "エディアカラ生物群",
   sub_category: "左右相称動物様生物",

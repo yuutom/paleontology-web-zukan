@@ -3,8 +3,8 @@ import type { FossilSource } from "./types";
 export const woollyMammoth: FossilSource = {
   id: "woolly-mammoth",
   name: "ウーリーマンモス",
-  from: 0.4,
-  to: 0.004,
+  from: 4,
+  to: 0.04,
   length: 900,
   category: "哺乳類",
   sub_category: "ゾウ科",

@@ -3,8 +3,8 @@ import type { FossilSource } from "./types";
 export const pachycephalosaurus: FossilSource = {
   id: "pachycephalosaurus",
   name: "パキケファロサウルス",
-  from: 7.05,
-  to: 6.6,
+  from: 70.5,
+  to: 66,
   length: 450,
   category: "恐竜",
   sub_category: "鳥脚類",

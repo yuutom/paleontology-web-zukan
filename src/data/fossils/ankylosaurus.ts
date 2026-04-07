@@ -3,8 +3,8 @@ import type { FossilSource } from "./types";
 export const ankylosaurus: FossilSource = {
   id: "ankylosaurus",
   name: "アンキロサウルス",
-  from: 6.85,
-  to: 6.6,
+  from: 68.5,
+  to: 66,
   length: 800,
   category: "恐竜",
   sub_category: "装盾類",

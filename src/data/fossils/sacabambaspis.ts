@@ -3,8 +3,8 @@ import type { FossilSource } from "./types";
 export const sacabambaspis: FossilSource = {
   id: "sacabambaspis",
   name: "サカバンバスピス",
-  from: 46.7,
-  to: 45.6,
+  from: 467,
+  to: 456,
   length: 25,
   category: "魚類",
   sub_category: "無顎類",

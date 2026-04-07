@@ -3,8 +3,8 @@ import type { FossilSource } from "./types";
 export const bothriolepis: FossilSource = {
   id: "bothriolepis",
   name: "ボスリオレピス",
-  from: 38.4,
-  to: 36.6,
+  from: 384,
+  to: 366,
   length: 35,
   category: "魚類",
   sub_category: "板皮類",

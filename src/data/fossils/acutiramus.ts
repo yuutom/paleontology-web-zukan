@@ -3,8 +3,8 @@ import type { FossilSource } from "./types";
 export const acutiramus: FossilSource = {
   id: "acutiramus",
   name: "アクティラムス",
-  from: 43.3,
-  to: 41.1,
+  from: 433,
+  to: 411,
   length: 20,
   category: "節足動物",
   sub_category: "ウミサソリ類",

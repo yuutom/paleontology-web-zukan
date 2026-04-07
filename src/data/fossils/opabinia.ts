@@ -3,8 +3,8 @@ import type { FossilSource } from "./types";
 export const opabinia: FossilSource = {
   id: "opabinia",
   name: "オパビニア",
-  from: 50.8,
-  to: 50.5,
+  from: 508,
+  to: 505,
   length: 7,
   category: "節足動物",
   sub_category: "オパビニア類",

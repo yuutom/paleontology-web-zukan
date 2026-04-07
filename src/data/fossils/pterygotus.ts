@@ -3,8 +3,8 @@ import type { FossilSource } from "./types";
 export const pterygotus: FossilSource = {
   id: "pterygotus",
   name: "プテリゴートゥス",
-  from: 43.6,
-  to: 42.3,
+  from: 436,
+  to: 423,
   length: 170,
   category: "節足動物",
   sub_category: "ウミサソリ類",

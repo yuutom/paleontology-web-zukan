@@ -3,8 +3,8 @@ import type { FossilSource } from "./types";
 export const mosasaurus: FossilSource = {
   id: "mosasaurus",
   name: "モササウルス",
-  from: 8.2,
-  to: 6.6,
+  from: 82,
+  to: 66,
   length: 1300,
   category: "爬虫類",
   sub_category: "モササウルス類",

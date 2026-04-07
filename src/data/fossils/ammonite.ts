@@ -3,8 +3,8 @@ import type { FossilSource } from "./types";
 export const ammonite: FossilSource = {
   id: "ammonite",
   name: "アンモナイト",
-  from: 24,
-  to: 6.6,
+  from: 240,
+  to: 66,
   length: 40,
   category: "軟体動物",
   sub_category: "アンモナイト類",

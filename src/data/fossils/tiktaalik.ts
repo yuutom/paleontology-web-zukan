@@ -3,8 +3,8 @@ import type { FossilSource } from "./types";
 export const tiktaalik: FossilSource = {
   id: "tiktaalik",
   name: "ティクターリク",
-  from: 37.5,
-  to: 37.4,
+  from: 375,
+  to: 374,
   length: 270,
   category: "魚類",
   sub_category: "四肢動物形類",

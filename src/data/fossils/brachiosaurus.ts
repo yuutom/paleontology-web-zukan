@@ -3,8 +3,8 @@ import type { FossilSource } from "./types";
 export const brachiosaurus: FossilSource = {
   id: "brachiosaurus",
   name: "ブラキオサウルス",
-  from: 15.4,
-  to: 14.5,
+  from: 154,
+  to: 145,
   length: 2200,
   category: "恐竜",
   sub_category: "竜脚類",

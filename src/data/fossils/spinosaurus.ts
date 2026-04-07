@@ -3,8 +3,8 @@ import type { FossilSource } from "./types";
 export const spinosaurus: FossilSource = {
   id: "spinosaurus",
   name: "スピノサウルス",
-  from: 10.05,
-  to: 9.35,
+  from: 100.5,
+  to: 93.5,
   length: 1500,
   category: "恐竜",
   sub_category: "獣脚類",

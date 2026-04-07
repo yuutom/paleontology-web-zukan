@@ -3,8 +3,8 @@ import type { FossilSource } from "./types";
 export const cameroceras: FossilSource = {
   id: "cameroceras",
   name: "カメロケラス",
-  from: 47.5,
-  to: 44.8,
+  from: 475,
+  to: 448,
   length: 600,
   category: "軟体動物",
   sub_category: "オルソセラス類",

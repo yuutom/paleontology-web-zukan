@@ -3,8 +3,8 @@ import type { FossilSource } from "./types";
 export const stegosaurus: FossilSource = {
   id: "stegosaurus",
   name: "ステゴサウルス",
-  from: 15.5,
-  to: 15,
+  from: 155,
+  to: 150,
   length: 900,
   category: "恐竜",
   sub_category: "装盾類",

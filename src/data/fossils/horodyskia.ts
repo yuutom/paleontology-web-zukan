@@ -3,8 +3,8 @@ import type { FossilSource } from "./types";
 export const horodyskia: FossilSource = {
   id: "horodyskia",
   name: "ホロディスキア",
-  from: 150,
-  to: 110,
+  from: 1500,
+  to: 1100,
   length: 20,
   category: "原始的多細胞生物",
   sub_category: "連珠状生物",

@@ -3,8 +3,8 @@ import type { FossilSource } from "./types";
 export const archaeopteryx: FossilSource = {
   id: "archaeopteryx",
   name: "アーケオプテリクス",
-  from: 15.05,
-  to: 14.8,
+  from: 150.5,
+  to: 148,
   length: 50,
   category: "鳥類",
   sub_category: "初期鳥類",

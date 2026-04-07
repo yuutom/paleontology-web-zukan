@@ -3,8 +3,8 @@ import type { FossilSource } from "./types";
 export const dunkleosteus: FossilSource = {
   id: "dunkleosteus",
   name: "ダンクルオステウス",
-  from: 38.2,
-  to: 35.8,
+  from: 382,
+  to: 358,
   length: 600,
   category: "魚類",
   sub_category: "板皮類",
