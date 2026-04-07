@@ -5,6 +5,7 @@ export const plesiosaur: FossilSource = {
   name: "プレシオサウルス",
   from: 20.1,
   to: 6.6,
+  length: 350,
   category: "爬虫類",
   sub_category: "首長竜類",
   accent: "#7ca7c8",

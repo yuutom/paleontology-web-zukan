@@ -5,6 +5,7 @@ export type FossilSource = {
   name: string;
   from: number;
   to: number;
+  length: number;
   category: string;
   sub_category: string;
   accent: string;

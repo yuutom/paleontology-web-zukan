@@ -5,6 +5,7 @@ export const anomalocaris: FossilSource = {
   name: "アノマロカリス",
   from: 52,
   to: 52,
+  length: 60,
   category: "節足動物",
   sub_category: "放射歯類",
   accent: "#8cc6ba",

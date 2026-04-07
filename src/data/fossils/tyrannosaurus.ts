@@ -5,6 +5,7 @@ export const tyrannosaurus: FossilSource = {
   name: "ティラノサウルス",
   from: 6.83,
   to: 6.6,
+  length: 1200,
   category: "恐竜",
   sub_category: "獣脚類",
   accent: "#b87a68",

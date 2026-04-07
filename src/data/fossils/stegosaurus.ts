@@ -5,6 +5,7 @@ export const stegosaurus: FossilSource = {
   name: "ステゴサウルス",
   from: 15.5,
   to: 15,
+  length: 900,
   category: "恐竜",
   sub_category: "装盾類",
   accent: "#d6a56f",

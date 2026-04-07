@@ -5,6 +5,7 @@ export const smilodon: FossilSource = {
   name: "スミロドン",
   from: 0.25,
   to: 0.001,
+  length: 210,
   category: "哺乳類",
   sub_category: "ネコ科",
   accent: "#d3b377",

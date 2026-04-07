@@ -49,6 +49,10 @@ function formatCompactRange(from: number, to: number) {
   return `${from} - ${to}`;
 }
 
+function formatLength(length: number) {
+  return `${length.toLocaleString("ja-JP")} cm`;
+}
+
 function formatTimelineEntryLabel(fossil: Fossil) {
   if (fossil.timeline_entries.length === 0) {
     return "時代未設定";
@@ -367,6 +371,7 @@ function App() {
                         formatTimelineEntryLabel(selectedFossil),
                       ],
                       ["期間", formatCompactRange(selectedFossil.from, selectedFossil.to)],
+                      ["体長", formatLength(selectedFossil.length)],
                       ["分類", selectedFossil.category],
                       ["小分類", selectedFossil.sub_category],
                     ].map(([label, value]) => (

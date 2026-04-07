@@ -5,6 +5,7 @@ export const trilobite: FossilSource = {
   name: "三葉虫",
   from: 52.1,
   to: 25.2,
+  length: 30,
   category: "節足動物",
   sub_category: "三葉虫類",
   accent: "#cbb489",

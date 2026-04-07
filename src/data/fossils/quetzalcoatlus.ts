@@ -5,6 +5,7 @@ export const quetzalcoatlus: FossilSource = {
   name: "ケツァルコアトルス",
   from: 7,
   to: 6.6,
+  length: 550,
   category: "爬虫類",
   sub_category: "翼竜",
   accent: "#9aa8d3",

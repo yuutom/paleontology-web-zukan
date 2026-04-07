@@ -5,6 +5,7 @@ export const dunkleosteus: FossilSource = {
   name: "ダンクルオステウス",
   from: 38.2,
   to: 35.8,
+  length: 600,
   category: "魚類",
   sub_category: "板皮類",
   accent: "#c98e79",
