@@ -159,12 +159,14 @@ function App() {
 
           <div className="relative z-10 mt-13 grid gap-6 lg:grid-cols-[minmax(0,1.5fr)_minmax(280px,0.8fr)] max-sm:mt-8">
             <div>
-              <p className="text-xs uppercase tracking-[0.22em] text-[#a7bbb2]">Curated Fossil Atlas</p>
-              <h1 className="mt-3 font-['Iowan_Old_Style','Palatino_Linotype','Book_Antiqua',serif] text-[clamp(2.8rem,5vw,5.5rem)] leading-[1.05] font-semibold max-sm:text-[clamp(2.3rem,10vw,4rem)]">
-                時を超えて眠る生命を、
-                <br />
-                モダンな図鑑体験で。
+              <p className="text-xs uppercase tracking-[0.22em] text-[#a7bbb2]">
+                Curated Fossil Atlas
+              </p>
+
+              <h1 className="mt-3 font-['Iowan_Old_Style','Palatino_Linotype','Book_Antiqua',serif] text-[clamp(3.6rem,6.8vw,7rem)] leading-[1.02] font-semibold max-sm:text-[clamp(2.8rem,12vw,5rem)]">
+                古生物Web図鑑
               </h1>
+
               <p className="mt-5 max-w-[60ch] leading-8 text-[#d1ddd5]">
                 海から陸、三葉虫から巨大恐竜まで。古生物の姿、時代、分類、生息年代を直感的にたどれるインタラクティブなWeb図鑑です。
               </p>
@@ -190,7 +192,7 @@ function App() {
                 {eraDistribution.map(([name, count]) => (
                   <div
                     key={name}
-                    className="grid items-center gap-3 [grid-template-columns:84px_1fr_auto] max-sm:[grid-template-columns:1fr]"
+                    className="grid items-center gap-3 [grid-template-columns:120px_1fr_auto] max-sm:[grid-template-columns:1fr]"
                   >
                     <strong>{name}</strong>
                     <div className="h-2 overflow-hidden rounded-full bg-white/8">

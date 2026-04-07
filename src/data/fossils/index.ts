@@ -5,12 +5,15 @@ import { ankylosaurus } from "./ankylosaurus";
 import { archaeopteryx } from "./archaeopteryx";
 import { arthropleura } from "./arthropleura";
 import { basilosaurus } from "./basilosaurus";
+import { bangiomorpha } from "./bangiomorpha";
 import { birkenia } from "./birkenia";
 import { bothriolepis } from "./bothriolepis";
 import { brachiosaurus } from "./brachiosaurus";
 import { cameroceras } from "./cameroceras";
 import { carnotaurus } from "./carnotaurus";
 import { deinonychus } from "./deinonychus";
+import { charnia } from "./charnia";
+import { dickinsonia } from "./dickinsonia";
 import { endoceras } from "./endoceras";
 import { dimetrodon } from "./dimetrodon";
 import { diplodocus } from "./diplodocus";
@@ -19,13 +22,17 @@ import { elasmotherium } from "./elasmotherium";
 import { acutiramus } from "./acutiramus";
 import { glyptodon } from "./glyptodon";
 import { gorgonops } from "./gorgonops";
+import { grypania } from "./grypania";
 import { hallucigenia } from "./hallucigenia";
+import { horodyskia } from "./horodyskia";
 import { ichthyosaurus } from "./ichthyosaurus";
+import { kimberella } from "./kimberella";
 import { liopleurodon } from "./liopleurodon";
 import { megalodon } from "./megalodon";
 import { meganeura } from "./meganeura";
 import { mosasaurus } from "./mosasaurus";
 import { opabinia } from "./opabinia";
+import { otavia } from "./otavia";
 import { pachycephalosaurus } from "./pachycephalosaurus";
 import { parasaurolophus } from "./parasaurolophus";
 import { plesiosaur } from "./plesiosaur";
@@ -38,6 +45,7 @@ import { sacabambaspis } from "./sacabambaspis";
 import { scutosaurus } from "./scutosaurus";
 import { smilodon } from "./smilodon";
 import { spinosaurus } from "./spinosaurus";
+import { spriggina } from "./spriggina";
 import { stegosaurus } from "./stegosaurus";
 import { cephalaspis } from "./cephalaspis";
 import { tiktaalik } from "./tiktaalik";
@@ -51,6 +59,14 @@ import { withTimelineEntries } from "./utils";
 export type { Fossil, FossilSource } from "./types";
 
 export const fossils = [
+  grypania,
+  bangiomorpha,
+  horodyskia,
+  otavia,
+  charnia,
+  dickinsonia,
+  kimberella,
+  spriggina,
   anomalocaris,
   opabinia,
   hallucigenia,
