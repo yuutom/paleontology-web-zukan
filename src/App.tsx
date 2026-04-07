@@ -1,8 +1,9 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { fossils, type Fossil } from "./data/fossils";
 import { timelineEntries } from "./data/timeline";
 
 const GRID_DESCRIPTION_MAX_LENGTH = 70;
+const GRID_DESCRIPTION_MAX_LENGTH_MOBILE = 40;
 
 const allTimelineEntries = [
   "all",
@@ -236,11 +237,112 @@ function HeroWorldIllustration() {
   );
 }
 
+function FossilDetailPanel({
+  fossil,
+  compact = false,
+  showEyebrow = true,
+}: {
+  fossil: Fossil;
+  compact?: boolean;
+  showEyebrow?: boolean;
+}) {
+  return (
+    <>
+      {showEyebrow ? (
+        <p className="text-xs uppercase tracking-[0.22em] text-[#a7bbb2]">Specimen Detail</p>
+      ) : null}
+      <div className="mt-3 flex items-baseline justify-between gap-4 max-sm:flex-col max-sm:items-start">
+        <h3
+          className={`font-['Iowan_Old_Style','Palatino_Linotype','Book_Antiqua',serif] ${compact ? "text-[2rem] leading-none" : "text-4xl"}`}
+        >
+          {fossil.name}
+        </h3>
+        <span className="text-xs text-[#a7bbb2]">{fossil.sub_category}</span>
+      </div>
+
+      <div
+        className={`rounded-[22px] bg-[radial-gradient(circle_at_top,rgba(203,180,137,0.22),transparent_58%),linear-gradient(180deg,rgba(255,255,255,0.04),rgba(0,0,0,0.12))] ${compact ? "mt-4 p-4" : "mt-[18px] p-[18px]"}`}
+      >
+        <FossilDetailImage fossil={fossil} />
+      </div>
+
+      <div className={`flex flex-wrap gap-2.5 ${compact ? "mt-4" : "mt-5"}`}>
+        <span className="rounded-full border border-white/6 bg-white/5 px-3 py-2 text-xs text-[#dce6e0]">
+          {formatTimelineEntryLabel(fossil)}
+        </span>
+        <span className="rounded-full border border-white/6 bg-white/5 px-3 py-2 text-xs text-[#dce6e0]">
+          {fossil.category}
+        </span>
+        <span className="rounded-full border border-white/6 bg-white/5 px-3 py-2 text-xs text-[#dce6e0]">
+          {fossil.sub_category}
+        </span>
+      </div>
+
+      <p className={`text-[#d1ddd5] ${compact ? "mt-4 text-[0.92rem] leading-6" : "mt-5 text-[0.95rem] leading-7"}`}>
+        {fossil.description}
+      </p>
+
+      <div className={`flex flex-wrap gap-2.5 ${compact ? "mt-4" : "mt-[18px]"}`}>
+        {[
+          ["名称", fossil.name],
+          ["地質時代", formatTimelineEntryLabel(fossil)],
+          ["期間", formatCompactRange(fossil.from, fossil.to)],
+          ["体長", formatLength(fossil.length)],
+          ["分類", fossil.category],
+          ["小分類", fossil.sub_category],
+        ].map(([label, value]) => (
+          <div
+            key={label}
+            className="min-w-[140px] flex-1 rounded-2xl border border-white/6 bg-white/[0.03] p-[14px] max-sm:min-w-0"
+          >
+            <span className="block text-xs text-[#a7bbb2]">{label}</span>
+            <strong className="mt-1.5 block text-[0.98rem] text-[#f0f5f1]">{value}</strong>
+          </div>
+        ))}
+      </div>
+    </>
+  );
+}
+
 function App() {
   const [query, setQuery] = useState("");
   const [era, setEra] = useState("all");
   const [category, setCategory] = useState("all");
   const [selectedId, setSelectedId] = useState(fossils[0]?.id ?? "");
+  const [isMobile, setIsMobile] = useState(false);
+  const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 639px)");
+    const handleChange = (event: MediaQueryList | MediaQueryListEvent) => {
+      setIsMobile(event.matches);
+    };
+
+    handleChange(mediaQuery);
+    mediaQuery.addEventListener("change", handleChange);
+
+    return () => {
+      mediaQuery.removeEventListener("change", handleChange);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!isMobile) {
+      setIsDetailModalOpen(false);
+      return;
+    }
+
+    if (!isDetailModalOpen) {
+      return;
+    }
+
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = originalOverflow;
+    };
+  }, [isDetailModalOpen, isMobile]);
 
   const filteredFossils = useMemo(() => {
     const normalizedQuery = query.trim().toLowerCase();
@@ -269,6 +371,12 @@ function App() {
 
   const selectedFossil =
     filteredFossils.find((item) => item.id === selectedId) ?? filteredFossils[0] ?? null;
+
+  useEffect(() => {
+    if (!selectedFossil) {
+      setIsDetailModalOpen(false);
+    }
+  }, [selectedFossil]);
 
   return (
     <div className="min-h-screen bg-[radial-gradient(circle_at_top_left,rgba(109,147,136,0.22),transparent_30%),radial-gradient(circle_at_top_right,rgba(201,142,121,0.18),transparent_28%),linear-gradient(180deg,#162126_0%,#0d1215_48%,#090c0e_100%)] text-stone-100">
@@ -454,7 +562,7 @@ function App() {
           </section>
 
           <section className="grid min-w-0 items-start gap-6 lg:grid-cols-[minmax(0,1.35fr)_minmax(310px,0.8fr)]">
-            <div className="grid min-w-0 gap-[18px] [grid-template-columns:repeat(auto-fit,minmax(230px,1fr))] max-sm:[grid-template-columns:minmax(0,1fr)]">
+            <div className="grid min-w-0 gap-[18px] [grid-template-columns:repeat(auto-fit,minmax(230px,1fr))] max-sm:gap-2 max-sm:grid-cols-3">
               {filteredFossils.length === 0 ? (
                 <div className="col-span-full rounded-3xl border border-dashed border-white/12 px-8 py-10 text-center leading-8 text-[#d0dbd4]">
                   条件に一致する古生物は見つかりませんでした。検索語や絞り込み条件を変更してください。
@@ -462,13 +570,21 @@ function App() {
               ) : (
                 filteredFossils.map((fossil) => {
                   const isActive = fossil.id === selectedFossil?.id;
-                  const collapsedDescription = getCollapsedDescription(fossil.description);
+                  const collapsedDescription = getCollapsedDescription(
+                    fossil.description,
+                    isMobile ? GRID_DESCRIPTION_MAX_LENGTH_MOBILE : GRID_DESCRIPTION_MAX_LENGTH,
+                  );
 
                   return (
                     <article
                       key={fossil.id}
-                      onClick={() => setSelectedId(fossil.id)}
-                      className={`group cursor-pointer overflow-hidden rounded-[26px] border border-white/10 p-[18px] shadow-[0_24px_80px_rgba(0,0,0,0.28)] backdrop-blur-xl transition duration-200 hover:-translate-y-1 hover:border-[#f3d7a1]/25 ${
+                      onClick={() => {
+                        setSelectedId(fossil.id);
+                        if (isMobile) {
+                          setIsDetailModalOpen(true);
+                        }
+                      }}
+                      className={`group cursor-pointer overflow-hidden rounded-[26px] border border-white/10 p-[18px] shadow-[0_24px_80px_rgba(0,0,0,0.28)] backdrop-blur-xl transition duration-200 hover:-translate-y-1 hover:border-[#f3d7a1]/25 max-sm:rounded-[18px] max-sm:p-2 ${
                         isActive ? "-translate-y-1 border-[#f3d7a1]/25 bg-[rgba(17,28,32,0.95)]" : "bg-[rgba(16,28,31,0.82)]"
                       }`}
                       style={{
@@ -476,7 +592,7 @@ function App() {
                       }}
                     >
                       <div
-                        className="grid min-h-[188px] place-items-center rounded-[20px] bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(0,0,0,0.14))]"
+                        className="grid min-h-[188px] place-items-center rounded-[20px] bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(0,0,0,0.14))] max-sm:min-h-[72px] max-sm:rounded-[14px]"
                         style={{
                           backgroundImage: `radial-gradient(circle at top, color-mix(in srgb, ${fossil.accent} 28%, transparent), transparent 60%), linear-gradient(180deg, rgba(255,255,255,0.04), rgba(0,0,0,0.14))`,
                         }}
@@ -484,25 +600,27 @@ function App() {
                         <FossilCardArt fossil={fossil} />
                       </div>
 
-                      <p className="mt-[18px] text-xs text-[#a7bbb2]">{fossil.sub_category}</p>
-                      <h3 className="mt-2 font-['Iowan_Old_Style','Palatino_Linotype','Book_Antiqua',serif] text-2xl">
+                      <p className="mt-[18px] text-xs text-[#a7bbb2] max-sm:mt-2 max-sm:text-[0.52rem]">
+                        {fossil.sub_category}
+                      </p>
+                      <h3 className="mt-2 font-['Iowan_Old_Style','Palatino_Linotype','Book_Antiqua',serif] text-2xl max-sm:mt-1 max-sm:text-[0.78rem] max-sm:leading-tight">
                         {fossil.name}
                       </h3>
 
-                      <div className="mt-4 flex flex-wrap gap-2.5">
-                        <span className="rounded-full border border-white/6 bg-white/5 px-3 py-2 text-xs text-[#dce6e0]">
+                      <div className="mt-4 flex flex-wrap gap-2.5 max-sm:mt-2 max-sm:gap-1">
+                        <span className="rounded-full border border-white/6 bg-white/5 px-3 py-2 text-xs text-[#dce6e0] max-sm:px-1.5 max-sm:py-1 max-sm:text-[0.48rem]">
                           {formatTimelineEntryLabel(fossil)}
                         </span>
-                        <span className="rounded-full border border-white/6 bg-white/5 px-3 py-2 text-xs text-[#dce6e0]">
+                        <span className="rounded-full border border-white/6 bg-white/5 px-3 py-2 text-xs text-[#dce6e0] max-sm:px-1.5 max-sm:py-1 max-sm:text-[0.48rem]">
                           {fossil.category}
                         </span>
-                        <span className="rounded-full border border-white/6 bg-white/5 px-3 py-2 text-xs text-[#dce6e0]">
+                        <span className="rounded-full border border-white/6 bg-white/5 px-3 py-2 text-xs text-[#dce6e0] max-sm:hidden">
                           {fossil.sub_category}
                         </span>
                       </div>
 
-                      <div className="mt-4">
-                        <p className="text-[0.92rem] leading-6 text-[#d0dbd4]">
+                      <div className="mt-4 max-sm:mt-2">
+                        <p className="text-[0.92rem] leading-6 text-[#d0dbd4] max-sm:text-[0.64rem] max-sm:leading-4">
                           {collapsedDescription}
                         </p>
                       </div>
@@ -512,59 +630,9 @@ function App() {
               )}
             </div>
 
-            <aside className="sticky top-6 min-w-0 max-h-[calc(100vh-3rem)] overflow-y-auto rounded-[30px] border border-white/10 bg-[rgba(16,28,31,0.82)] p-[22px] shadow-[0_24px_80px_rgba(0,0,0,0.28)] backdrop-blur-xl max-lg:static max-lg:max-h-none max-lg:overflow-visible max-sm:p-4">
+            <aside className="sticky top-6 min-w-0 max-h-[calc(100vh-3rem)] overflow-y-auto rounded-[30px] border border-white/10 bg-[rgba(16,28,31,0.82)] p-[22px] shadow-[0_24px_80px_rgba(0,0,0,0.28)] backdrop-blur-xl max-lg:static max-lg:max-h-none max-lg:overflow-visible max-sm:hidden">
               {selectedFossil ? (
-                <>
-                  <p className="text-xs uppercase tracking-[0.22em] text-[#a7bbb2]">Specimen Detail</p>
-                  <div className="mt-3 flex items-baseline justify-between gap-4 max-sm:flex-col max-sm:items-start">
-                    <h3 className="font-['Iowan_Old_Style','Palatino_Linotype','Book_Antiqua',serif] text-4xl">
-                      {selectedFossil.name}
-                    </h3>
-                    <span className="text-xs text-[#a7bbb2]">{selectedFossil.sub_category}</span>
-                  </div>
-
-                  <div className="mt-[18px] rounded-[22px] bg-[radial-gradient(circle_at_top,rgba(203,180,137,0.22),transparent_58%),linear-gradient(180deg,rgba(255,255,255,0.04),rgba(0,0,0,0.12))] p-[18px]">
-                    <FossilDetailImage fossil={selectedFossil} />
-                  </div>
-
-                  <div className="mt-5 flex flex-wrap gap-2.5">
-                    <span className="rounded-full border border-white/6 bg-white/5 px-3 py-2 text-xs text-[#dce6e0]">
-                      {formatTimelineEntryLabel(selectedFossil)}
-                    </span>
-                    <span className="rounded-full border border-white/6 bg-white/5 px-3 py-2 text-xs text-[#dce6e0]">
-                      {selectedFossil.category}
-                    </span>
-                    <span className="rounded-full border border-white/6 bg-white/5 px-3 py-2 text-xs text-[#dce6e0]">
-                      {selectedFossil.sub_category}
-                    </span>
-                  </div>
-
-                  <p className="mt-5 text-[0.95rem] leading-7 text-[#d1ddd5]">
-                    {selectedFossil.description}
-                  </p>
-
-                  <div className="mt-[18px] flex flex-wrap gap-2.5">
-                    {[
-                      ["名称", selectedFossil.name],
-                      [
-                        "地質時代",
-                        formatTimelineEntryLabel(selectedFossil),
-                      ],
-                      ["期間", formatCompactRange(selectedFossil.from, selectedFossil.to)],
-                      ["体長", formatLength(selectedFossil.length)],
-                      ["分類", selectedFossil.category],
-                      ["小分類", selectedFossil.sub_category],
-                    ].map(([label, value]) => (
-                      <div
-                        key={label}
-                        className="min-w-[140px] flex-1 rounded-2xl border border-white/6 bg-white/[0.03] p-[14px] max-sm:min-w-0"
-                      >
-                        <span className="block text-xs text-[#a7bbb2]">{label}</span>
-                        <strong className="mt-1.5 block text-[0.98rem] text-[#f0f5f1]">{value}</strong>
-                      </div>
-                    ))}
-                  </div>
-                </>
+                <FossilDetailPanel fossil={selectedFossil} />
               ) : (
                 <p className="leading-8 text-[#c6d3cb]">
                   表示対象がありません。フィルターを調整すると詳細表示も更新されます。
@@ -574,6 +642,31 @@ function App() {
           </section>
         </main>
       </div>
+
+      {isMobile && isDetailModalOpen && selectedFossil ? (
+        <div className="fixed inset-0 z-50 flex items-end bg-[rgba(6,10,12,0.78)] backdrop-blur-sm sm:hidden">
+          <button
+            type="button"
+            aria-label="詳細を閉じる"
+            className="absolute inset-0"
+            onClick={() => setIsDetailModalOpen(false)}
+          />
+          <div className="relative max-h-[88vh] w-full overflow-y-auto rounded-t-[28px] border border-white/10 bg-[rgba(16,28,31,0.96)] p-4 shadow-[0_-24px_80px_rgba(0,0,0,0.35)]">
+            <div className="mx-auto mb-4 h-1.5 w-14 rounded-full bg-white/15" />
+            <div className="mb-4 flex items-center justify-between gap-4">
+              <p className="text-xs uppercase tracking-[0.22em] text-[#a7bbb2]">Specimen Detail</p>
+              <button
+                type="button"
+                className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs text-[#dce6e0]"
+                onClick={() => setIsDetailModalOpen(false)}
+              >
+                閉じる
+              </button>
+            </div>
+            <FossilDetailPanel fossil={selectedFossil} compact showEyebrow={false} />
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 }
