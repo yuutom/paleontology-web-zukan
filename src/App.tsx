@@ -2,18 +2,26 @@ import { useMemo, useState } from "react";
 import { fossils, type Fossil } from "./data/fossils";
 import { timelineEntries } from "./data/timeline";
 
-const allEras = ["all", ...new Set(fossils.map((item) => item.era))];
+const allTimelineEntries = [
+  "all",
+  ...new Set(fossils.flatMap((item) => item.timeline_entries.map((entry) => entry.name))),
+];
 const allCategories = ["all", ...new Set(fossils.map((item) => item.category))];
 
 const heroMetrics = [
   { label: "掲載種", value: `${fossils.length}` },
-  { label: "地質時代", value: `${new Set(fossils.map((item) => item.era)).size}` },
+  {
+    label: "地質時代",
+    value: `${new Set(fossils.flatMap((item) => item.timeline_entries.map((entry) => entry.name))).size}`,
+  },
   { label: "分類群", value: `${new Set(fossils.map((item) => item.category)).size}` },
 ];
 
 const eraDistribution = Object.entries(
   fossils.reduce<Record<string, number>>((acc, fossil) => {
-    acc[fossil.era] = (acc[fossil.era] || 0) + 1;
+    fossil.timeline_entries.forEach((entry) => {
+      acc[entry.name] = (acc[entry.name] || 0) + 1;
+    });
     return acc;
   }, {}),
 );
@@ -33,7 +41,25 @@ function formatTimelineRange(from: number, to: number) {
   return `${formatMillionsOfYears(from)} - ${formatMillionsOfYears(to)}`;
 }
 
+function formatCompactRange(from: number, to: number) {
+  if (to === 0) {
+    return `${from} - 現在`;
+  }
+
+  return `${from} - ${to}`;
+}
+
 function FossilArt({ fossil }: { fossil: Fossil }) {
+  if (fossil.image) {
+    return (
+      <img
+        src={fossil.image}
+        alt={`${fossil.name}の画像`}
+        className="h-auto w-full max-w-[230px] object-contain drop-shadow-[0_12px_24px_rgba(0,0,0,0.25)]"
+      />
+    );
+  }
+
   return (
     <div
       className="fossil-svg text-white [&_svg]:h-auto [&_svg]:w-full [&_svg]:max-w-[230px]"
@@ -54,12 +80,19 @@ function App() {
     return fossils.filter((fossil) => {
       const matchesQuery =
         !normalizedQuery ||
-        [fossil.name, fossil.era, fossil.category, fossil.type, fossil.summary]
+        [
+          fossil.name,
+          fossil.category,
+          fossil.sub_category,
+          fossil.description,
+          ...fossil.timeline_entries.map((entry) => entry.name),
+        ]
           .join(" ")
           .toLowerCase()
           .includes(normalizedQuery);
 
-      const matchesEra = era === "all" || fossil.era === era;
+      const matchesEra =
+        era === "all" || fossil.timeline_entries.some((entry) => entry.name === era);
       const matchesCategory = category === "all" || fossil.category === category;
 
       return matchesQuery && matchesEra && matchesCategory;
@@ -167,7 +200,7 @@ function App() {
                   onChange={(event) => setEra(event.target.value)}
                   className="w-full rounded-2xl border border-white/8 bg-[rgba(5,10,12,0.4)] px-4 py-3.5 text-stone-100 outline-none transition focus:-translate-y-px focus:border-[#f3d7a1]/60 focus:bg-[rgba(12,20,24,0.72)]"
                 >
-                  {allEras.map((value) => (
+                  {allTimelineEntries.map((value) => (
                     <option key={value} value={value}>
                       {value === "all" ? "すべての時代" : value}
                     </option>
@@ -249,21 +282,24 @@ function App() {
                         <FossilArt fossil={fossil} />
                       </div>
 
-                      <p className="mt-[18px] text-xs text-[#a7bbb2]">{fossil.type}</p>
+                      <p className="mt-[18px] text-xs text-[#a7bbb2]">{fossil.sub_category}</p>
                       <h3 className="mt-2 font-['Iowan_Old_Style','Palatino_Linotype','Book_Antiqua',serif] text-2xl">
                         {fossil.name}
                       </h3>
 
                       <div className="mt-4 flex flex-wrap gap-2.5">
                         <span className="rounded-full border border-white/6 bg-white/5 px-3 py-2 text-xs text-[#dce6e0]">
-                          {fossil.era}
+                          {fossil.timeline_entries.map((entry) => entry.name).join(" / ")}
                         </span>
                         <span className="rounded-full border border-white/6 bg-white/5 px-3 py-2 text-xs text-[#dce6e0]">
                           {fossil.category}
                         </span>
+                        <span className="rounded-full border border-white/6 bg-white/5 px-3 py-2 text-xs text-[#dce6e0]">
+                          {fossil.sub_category}
+                        </span>
                       </div>
 
-                      <p className="mt-4 leading-7 text-[#d0dbd4]">{fossil.summary}</p>
+                      <p className="mt-4 leading-7 text-[#d0dbd4]">{fossil.description}</p>
                     </article>
                   );
                 })
@@ -278,7 +314,7 @@ function App() {
                     <h3 className="font-['Iowan_Old_Style','Palatino_Linotype','Book_Antiqua',serif] text-4xl">
                       {selectedFossil.name}
                     </h3>
-                    <span className="text-xs text-[#a7bbb2]">{selectedFossil.type}</span>
+                    <span className="text-xs text-[#a7bbb2]">{selectedFossil.sub_category}</span>
                   </div>
 
                   <div className="mt-[18px] rounded-[22px] bg-[radial-gradient(circle_at_top,rgba(203,180,137,0.22),transparent_58%),linear-gradient(180deg,rgba(255,255,255,0.04),rgba(0,0,0,0.12))] p-[18px]">
@@ -287,21 +323,28 @@ function App() {
 
                   <div className="mt-5 flex flex-wrap gap-2.5">
                     <span className="rounded-full border border-white/6 bg-white/5 px-3 py-2 text-xs text-[#dce6e0]">
-                      {selectedFossil.era}
+                      {selectedFossil.timeline_entries.map((entry) => entry.name).join(" / ")}
                     </span>
                     <span className="rounded-full border border-white/6 bg-white/5 px-3 py-2 text-xs text-[#dce6e0]">
                       {selectedFossil.category}
                     </span>
+                    <span className="rounded-full border border-white/6 bg-white/5 px-3 py-2 text-xs text-[#dce6e0]">
+                      {selectedFossil.sub_category}
+                    </span>
                   </div>
 
-                  <p className="mt-5 leading-8 text-[#d1ddd5]">{selectedFossil.summary}</p>
+                  <p className="mt-5 leading-8 text-[#d1ddd5]">{selectedFossil.description}</p>
 
                   <div className="mt-[18px] flex flex-wrap gap-2.5">
                     {[
                       ["名称", selectedFossil.name],
-                      ["地質時代", selectedFossil.era],
-                      ["生息年代", selectedFossil.years],
+                      [
+                        "地質時代",
+                        selectedFossil.timeline_entries.map((entry) => entry.name).join(" / "),
+                      ],
+                      ["期間", formatCompactRange(selectedFossil.from, selectedFossil.to)],
                       ["分類", selectedFossil.category],
+                      ["小分類", selectedFossil.sub_category],
                     ].map(([label, value]) => (
                       <div
                         key={label}
