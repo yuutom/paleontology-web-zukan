@@ -2,6 +2,8 @@ import { useMemo, useState } from "react";
 import { fossils, type Fossil } from "./data/fossils";
 import { timelineEntries } from "./data/timeline";
 
+const GRID_DESCRIPTION_MAX_LENGTH = 70;
+
 const allTimelineEntries = [
   "all",
   ...new Set(fossils.flatMap((item) => item.timeline_entries.map((entry) => entry.name))),
@@ -94,6 +96,14 @@ function FossilDetailImage({ fossil }: { fossil: Fossil }) {
       dangerouslySetInnerHTML={{ __html: fossil.art }}
     />
   );
+}
+
+function getCollapsedDescription(description: string, maxLength = GRID_DESCRIPTION_MAX_LENGTH) {
+  if (description.length <= maxLength) {
+    return description;
+  }
+
+  return `${description.slice(0, maxLength).trimEnd()}…`;
 }
 
 function App() {
@@ -289,6 +299,7 @@ function App() {
               ) : (
                 filteredFossils.map((fossil) => {
                   const isActive = fossil.id === selectedFossil?.id;
+                  const collapsedDescription = getCollapsedDescription(fossil.description);
 
                   return (
                     <article
@@ -327,7 +338,11 @@ function App() {
                         </span>
                       </div>
 
-                      <p className="mt-4 leading-7 text-[#d0dbd4]">{fossil.description}</p>
+                      <div className="mt-4">
+                        <p className="text-[0.92rem] leading-6 text-[#d0dbd4]">
+                          {collapsedDescription}
+                        </p>
+                      </div>
                     </article>
                   );
                 })
@@ -361,7 +376,9 @@ function App() {
                     </span>
                   </div>
 
-                  <p className="mt-5 leading-8 text-[#d1ddd5]">{selectedFossil.description}</p>
+                  <p className="mt-5 text-[0.95rem] leading-7 text-[#d1ddd5]">
+                    {selectedFossil.description}
+                  </p>
 
                   <div className="mt-[18px] flex flex-wrap gap-2.5">
                     {[
