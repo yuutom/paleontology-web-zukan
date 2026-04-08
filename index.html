@@ -4,15 +4,67 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="canonical" href="https://koseibutsu-web-zukan.com/" />
     <title>古生物Web図鑑</title>
     <meta
       name="description"
-      content="古生物の名称・イラスト・地質時代・生息年代・分類・概要を美しいビジュアルで閲覧できる古生物Web図鑑。"
+      content="古生物の名称、イラスト、地質時代、生息年代、分類を一覧できる古生物Web図鑑。恐竜、海生爬虫類、三葉虫、初期哺乳類まで時代別にたどれます。"
     />
+    <meta
+      name="robots"
+      content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+    />
+    <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="application-name" content="古生物Web図鑑" />
+    <meta name="apple-mobile-web-app-title" content="古生物Web図鑑" />
+    <meta name="format-detection" content="telephone=no" />
     <meta name="theme-color" content="#10181b" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="ja_JP" />
+    <meta property="og:site_name" content="古生物Web図鑑" />
+    <meta property="og:url" content="https://koseibutsu-web-zukan.com/" />
+    <meta property="og:title" content="古生物Web図鑑" />
+    <meta
+      property="og:description"
+      content="恐竜から初期生命まで、古生物を地質時代・分類・生息年代でたどれるインタラクティブな古生物Web図鑑。"
+    />
+    <meta property="og:image" content="https://koseibutsu-web-zukan.com/images/tyrannosaurus.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://koseibutsu-web-zukan.com/" />
+    <meta name="twitter:title" content="古生物Web図鑑" />
+    <meta
+      name="twitter:description"
+      content="恐竜から初期生命まで、古生物を地質時代・分類・生息年代でたどれるインタラクティブな古生物Web図鑑。"
+    />
+    <meta name="twitter:image" content="https://koseibutsu-web-zukan.com/images/tyrannosaurus.png" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "古生物Web図鑑",
+        "url": "https://koseibutsu-web-zukan.com/",
+        "inLanguage": "ja",
+        "description": "恐竜、海生爬虫類、三葉虫、初期哺乳類などを地質時代・分類・生息年代でたどれる古生物Web図鑑。",
+        "image": "https://koseibutsu-web-zukan.com/images/tyrannosaurus.png",
+        "about": [
+          "古生物",
+          "恐竜",
+          "地質時代",
+          "古生物学"
+        ],
+        "publisher": {
+          "@type": "Organization",
+          "name": "古生物Web図鑑"
+        }
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>
+    <noscript>
+      Ancient Echoes は、恐竜や海生爬虫類、三葉虫、初期哺乳類などを地質時代・分類・生息年代で閲覧できる古生物Web図鑑です。
+    </noscript>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
