@@ -33,6 +33,8 @@ import { hylonomus } from "./hylonomus";
 import { ichthyosaurus } from "./ichthyosaurus";
 import { kimberella } from "./kimberella";
 import { liopleurodon } from "./liopleurodon";
+import { lystrosaurus } from "./lystrosaurus";
+import { marella } from "./marella";
 import { megalodon } from "./megalodon";
 import { meganeura } from "./meganeura";
 import { mosasaurus } from "./mosasaurus";
@@ -42,6 +44,7 @@ import { otavia } from "./otavia";
 import { pachycephalosaurus } from "./pachycephalosaurus";
 import { parasaurolophus } from "./parasaurolophus";
 import { plesiosaur } from "./plesiosaur";
+import { platybelodon } from "./platybelodon";
 import { postosuchus } from "./postosuchus";
 import { pteranodon } from "./pteranodon";
 import { pterygotus } from "./pterygotus";
@@ -55,6 +58,7 @@ import { spinosaurus } from "./spinosaurus";
 import { spriggina } from "./spriggina";
 import { stegosaurus } from "./stegosaurus";
 import { cephalaspis } from "./cephalaspis";
+import { jaekelopterus } from "./jaekelopterus";
 import { therizinosaurus } from "./therizinosaurus";
 import { tiktaalik } from "./tiktaalik";
 import { trilobite } from "./trilobite";
@@ -81,6 +85,7 @@ export const fossils = [
   anomalocaris,
   opabinia,
   hallucigenia,
+  marella,
   wiwaxia,
   trilobite,
   acutiramus,
@@ -94,11 +99,13 @@ export const fossils = [
   dunkleosteus,
   cephalaspis,
   bothriolepis,
+  jaekelopterus,
   tiktaalik,
   acanthostega,
   hylonomus,
   dimetrodon,
   edaphosaurus,
+  lystrosaurus,
   ammonite,
   postosuchus,
   liopleurodon,
@@ -128,6 +135,7 @@ export const fossils = [
   basilosaurus,
   megalodon,
   elasmotherium,
+  platybelodon,
   meganeura,
   pulmonoscorpius,
   gorgonops,
