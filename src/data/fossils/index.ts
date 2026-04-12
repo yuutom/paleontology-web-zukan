@@ -13,39 +13,48 @@ import { bothriolepis } from "./bothriolepis";
 import { brachiosaurus } from "./brachiosaurus";
 import { cameroceras } from "./cameroceras";
 import { carnotaurus } from "./carnotaurus";
+import { coelophysis } from "./coelophysis";
 import { deinonychus } from "./deinonychus";
 import { charnia } from "./charnia";
 import { dickinsonia } from "./dickinsonia";
 import { endoceras } from "./endoceras";
 import { dimetrodon } from "./dimetrodon";
 import { diplodocus } from "./diplodocus";
+import { dimorphodon } from "./dimorphodon";
 import { dunkleosteus } from "./dunkleosteus";
 import { dilophosaurus } from "./dilophosaurus";
 import { edaphosaurus } from "./edaphosaurus";
+import { elasmosaurus } from "./elasmosaurus";
 import { elasmotherium } from "./elasmotherium";
 import { acutiramus } from "./acutiramus";
 import { glyptodon } from "./glyptodon";
 import { gorgonops } from "./gorgonops";
 import { grypania } from "./grypania";
 import { hallucigenia } from "./hallucigenia";
+import { helicoprion } from "./helicoprion";
 import { horodyskia } from "./horodyskia";
 import { hylonomus } from "./hylonomus";
 import { ichthyosaurus } from "./ichthyosaurus";
+import { ichthyostega } from "./ichthyostega";
+import { iguanodon } from "./iguanodon";
 import { kimberella } from "./kimberella";
 import { liopleurodon } from "./liopleurodon";
 import { lystrosaurus } from "./lystrosaurus";
 import { marella } from "./marella";
 import { megalodon } from "./megalodon";
+import { megaloceros } from "./megaloceros";
 import { meganeura } from "./meganeura";
 import { mosasaurus } from "./mosasaurus";
 import { opabinia } from "./opabinia";
 import { orthoceras } from "./orthoceras";
 import { otavia } from "./otavia";
+import { oviraptor } from "./oviraptor";
 import { pachycephalosaurus } from "./pachycephalosaurus";
 import { parasaurolophus } from "./parasaurolophus";
 import { plesiosaur } from "./plesiosaur";
 import { platybelodon } from "./platybelodon";
 import { postosuchus } from "./postosuchus";
+import { protoceratops } from "./protoceratops";
 import { pteranodon } from "./pteranodon";
 import { pterygotus } from "./pterygotus";
 import { pulmonoscorpius } from "./pulmonoscorpius";
@@ -57,6 +66,7 @@ import { smilodon } from "./smilodon";
 import { spinosaurus } from "./spinosaurus";
 import { spriggina } from "./spriggina";
 import { stegosaurus } from "./stegosaurus";
+import { styracosaurus } from "./styracosaurus";
 import { cephalaspis } from "./cephalaspis";
 import { jaekelopterus } from "./jaekelopterus";
 import { therizinosaurus } from "./therizinosaurus";
@@ -102,32 +112,41 @@ export const fossils = [
   jaekelopterus,
   tiktaalik,
   acanthostega,
+  ichthyostega,
   hylonomus,
   dimetrodon,
   edaphosaurus,
+  helicoprion,
   lystrosaurus,
   ammonite,
   postosuchus,
+  coelophysis,
   liopleurodon,
   ichthyosaurus,
   plesiosaur,
+  dimorphodon,
   dilophosaurus,
   allosaurus,
   archaeopteryx,
   brachiosaurus,
   diplodocus,
   stegosaurus,
+  iguanodon,
   deinonychus,
   ankylosaurus,
   pachycephalosaurus,
   parasaurolophus,
   spinosaurus,
+  elasmosaurus,
   sarcosuchus,
   mosasaurus,
+  protoceratops,
+  styracosaurus,
   triceratops,
   therizinosaurus,
   tyrannosaurus,
   carnotaurus,
+  oviraptor,
   velociraptor,
   pteranodon,
   quetzalcoatlus,
@@ -136,6 +155,7 @@ export const fossils = [
   megalodon,
   elasmotherium,
   platybelodon,
+  megaloceros,
   meganeura,
   pulmonoscorpius,
   gorgonops,
